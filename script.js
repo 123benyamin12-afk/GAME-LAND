@@ -1,35 +1,36 @@
-// گرفتن تمام دکمه‌های انتخاب رنگ
-const colorBtns = document.querySelectorAll('.color-btn');
+// گرفتن عناصر انتخاب تم
+const colorPickers = document.querySelectorAll('.color-picker');
+const body = document.body;
 
-// بررسی وجود رنگ ذخیره‌شده در مرورگر کاربر
-const savedColor = localStorage.getItem('selectedColor');
-if (savedColor) {
-    document.documentElement.style.setProperty('--primary-color', savedColor);
-    colorBtns.forEach(btn => {
-        if (btn.getAttribute('data-color') === savedColor) {
-            btn.classList.add('active');
+// بررسی تم ذخیره‌شده از قبل
+const savedTheme = localStorage.getItem('gameLandTheme');
+if (savedTheme) {
+    body.className = savedTheme;
+    colorPickers.forEach(picker => {
+        if (picker.getAttribute('data-theme') === savedTheme) {
+            picker.classList.add('active');
         } else {
-            btn.classList.remove('active');
+            picker.classList.remove('active');
         }
     });
 }
 
-// اضافه کردن رویداد کلیک به هر دکمه رنگ
-colorBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        // برداشتن کلاس active از بقیه
-        colorBtns.forEach(b => b.classList.remove('active'));
+// افزودن کلیک روی دکمه‌های تم در کادر پایینی
+colorPickers.forEach(picker => {
+    picker.addEventListener('click', () => {
+        // حذف استایل فعال قبلی
+        colorPickers.forEach(p => p.classList.remove('active'));
         
-        // فعال کردن دکمه کلیک شده
-        btn.classList.add('active');
+        // فعال‌سازی دکمه جدید
+        picker.classList.add('active');
         
-        // دریافت کد رنگ
-        const selectedColor = btn.getAttribute('data-color');
+        // دریافت نام کلاس تم
+        const selectedTheme = picker.getAttribute('data-theme');
         
-        // اعمال رنگ به کدهای CSS
-        document.documentElement.style.setProperty('--primary-color', selectedColor);
+        // تغییر کلاس اصلی body
+        body.className = selectedTheme;
         
-        // ذخیره رنگ در مرورگر کاربر تا با رفرش پاک نشود
-        localStorage.setItem('selectedColor', selectedColor);
+        // ذخیره انتخاب کاربر در مرورگر
+        localStorage.setItem('gameLandTheme', selectedTheme);
     });
 });
