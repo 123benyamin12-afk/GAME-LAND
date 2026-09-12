@@ -3,70 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Land | دنیای بازی‌ها</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- آیکون‌ها -->
+    <title>GAME LAND | Ultimate Gaming Zone</title>
+    <!-- فونت گیمینگ Orbitron و فونت وزیرمتن -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Vazirmatn:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- آیکون‌های FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="theme-1">
 
-    <!-- بخش تغییر تم رنگی -->
-    <div class="theme-switcher">
-        <span>رنگ تم:</span>
-        <div class="colors-container">
-            <button class="color-btn active" data-color="#ff0055" style="background: #ff0055;" title="قرمز نئونی"></button>
-            <button class="color-btn" data-color="#00f3ff" style="background: #00f3ff;" title="آبی سیان"></button>
-            <button class="color-btn" data-color="#a100ff" style="background: #a100ff;" title="بنفش گیمینگ"></button>
-            <button class="color-btn" data-color="#00ff66" style="background: #00ff66;" title="سبز سایبری"></button>
-            <button class="color-btn" data-color="#ff00a0" style="background: #ff00a0;" title="صورتی نئون"></button>
-            <button class="color-btn" data-color="#ffbf00" style="background: #ffbf00;" title="زرد طلایی"></button>
-            <button class="color-btn" data-color="#ff5500" style="background: #ff5500;" title="نارنجی آتشین"></button>
-        </div>
-    </div>
+    <!-- پس‌زمینه پویای شبکه سایبری -->
+    <div class="cyber-grid"></div>
+    <div class="glow-orb"></div>
 
     <!-- هدر سایت -->
     <header>
         <div class="logo">
-            <i class="fa-solid fa-gamepad"></i> GAME <span>LAND</span>
+            <i class="fa-solid fa-gamepad logo-icon"></i>
+            <span class="logo-text">GAME <span class="highlight">LAND</span></span>
         </div>
         <nav>
-            <a href="#">صفحه اصلی</a>
-            <a href="#">بازی‌ها</a>
-            <a href="#">اخبار</a>
-            <a href="#">تماس با ما</a>
+            <a href="#" class="active"><i class="fa-solid fa-house"></i> صفحه اصلی</a>
+            <a href="#"><i class="fa-solid fa-ghost"></i> بازی‌ها</a>
+            <a href="#"><i class="fa-solid fa-fire"></i> تورنمنت</a>
+            <a href="#"><i class="fa-solid fa-comments"></i> جامعه گیمرها</a>
         </nav>
+        <button class="btn-join">ورود / عضویت</button>
     </header>
 
     <!-- بخش اصلی / خوش‌آمدگویی -->
     <section class="hero">
-        <div class="hero-content">
-            <h1 class="glow-text">به سرزمین <span>گیم لند</span> خوش آمدید!</h1>
-            <p>مکان حرفه‌ای‌ها؛ جدیدترین اخبار، ویدیوها و بازی‌های روز دنیا را اینجا تجربه کنید.</p>
-            <div class="btn-group">
-                <a href="#" class="btn primary-btn">ورود به دنیای بازی</a>
-                <a href="#" class="btn secondary-btn">عضویت در کانال</a>
-            </div>
+        <div class="badge"><i class="fa-solid fa-bolt"></i> سیستم گیمینگ نسل جدید</div>
+        <h1 class="hero-title">ورود به دنیای بی‌انتهای <br><span class="gradient-text">GAME LAND</span></h1>
+        <p class="hero-desc">به بزرگ‌ترین مرجع گیمرهای حرفه‌ای خوش آمدید. جدیدترین بازی‌ها، تورنمنت‌های کشوری و اخبار داغ دنیای گیم را با ما تجربه کنید.</p>
+        
+        <div class="hero-btns">
+            <a href="#" class="btn main-btn">
+                <span>شروع ماجراجویی</span>
+                <i class="fa-solid fa-chevron-left"></i>
+            </a>
+            <a href="#" class="btn glass-btn">
+                <i class="fa-solid fa-play"></i> مشاهده تریلر
+            </a>
         </div>
     </section>
 
-    <!-- بخش کارت‌ها / محتوا -->
+    <!-- بخش کارت‌های گیمینگ -->
     <section class="features">
         <div class="card">
-            <i class="fa-solid fa-trophy"></i>
-            <h3>تورنمنت‌ها</h3>
-            <p>شرکت در مسابقات هفتگی و دریافت جوایز ویژه.</p>
+            <div class="card-icon"><i class="fa-solid fa-trophy"></i></div>
+            <h3>چالش‌ها و مسابقات</h3>
+            <p>در مسابقات هفتگی شرکت کنید، رتبه بزنید و جوایز میلیونی برنده شوید.</p>
         </div>
         <div class="card">
-            <i class="fa-solid fa-headset"></i>
-            <h3>جامعه گیمرها</h3>
-            <p>چت و گفتگو با سایر بازیکنان و ساخت تیم.</p>
+            <div class="card-icon"><i class="fa-solid fa-headset"></i></div>
+            <h3>سرورهای اختصاصی</h3>
+            <p>اتصال بدون پینگ و با بالاترین سرعت به سرورهای گیم لند.</p>
         </div>
         <div class="card">
-            <i class="fa-solid fa-bolt"></i>
-            <h3>محتوای داغ</h3>
-            <p>راهنمای مرحله به مرحله و ترفندهای گیمینگ.</p>
+            <div class="card-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <h3>تیم‌سازی حرفه‌ای</h3>
+            <p>هم‌تیمی‌های جدید پیدا کنید و کلن خودتان را بسازید.</p>
         </div>
     </section>
+
+    <!-- کادر شناور انتخاب تم رنگی در پایین صفحه -->
+    <div class="bottom-theme-panel">
+        <div class="panel-header">
+            <i class="fa-solid fa-palette"></i>
+            <span>تنظیمات تم گیمینگ</span>
+        </div>
+        <div class="color-options">
+            <button class="color-picker active" data-theme="theme-1" style="background: linear-gradient(135deg, #00f3ff, #ff0055);" title="سایبر پینک (سیان + قرمز)"></button>
+            <button class="color-picker" data-theme="theme-2" style="background: linear-gradient(135deg, #7928ca, #ff0080);" title="بنفش نئون (بنفش + صورتی)"></button>
+            <button class="color-picker" data-theme="theme-3" style="background: linear-gradient(135deg, #00ff87, #60efff);" title="یخی سایبری (سبز + سیان)"></button>
+            <button class="color-picker" data-theme="theme-4" style="background: linear-gradient(135deg, #ff4e50, #f9d423);" title="آتشین (قرمز + زرد)"></button>
+            <button class="color-picker" data-theme="theme-5" style="background: linear-gradient(135deg, #00c6ff, #0072ff);" title="آبی الترا (آبی روشن + آبی تیره)"></button>
+            <button class="color-picker" data-theme="theme-6" style="background: linear-gradient(135deg, #f857a6, #ff5858);" title="غروب خورشید (صورتی + نارنجی)"></button>
+            <button class="color-picker" data-theme="theme-7" style="background: linear-gradient(135deg, #f39c12, #d35400);" title="طلا و آتش (طلا + نارنجی)"></button>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
