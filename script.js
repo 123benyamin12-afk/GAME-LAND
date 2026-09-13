@@ -1,43 +1,67 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // دریافت تمام کارت‌های رنگی
-    const colorCards = document.querySelectorAll('.color-card');
-    const heroTitle = document.querySelector('.hero h1 span');
-    const logoSpan = document.querySelector('.logo span');
+const themes = document.querySelectorAll(".theme");
 
-    // آرایه تعریف ترکیب رنگ‌ها (مطابق با کلاس‌های CSS)
-    const colorThemes = {
-        'color-1': { primary: '#00f2fe', secondary: '#4facfe' },
-        'color-2': { primary: '#ff0844', secondary: '#ffb199' },
-        'color-3': { primary: '#0ba360', secondary: '#3cba92' },
-        'color-4': { primary: '#654ea3', secondary: '#eaafc8' },
-        'color-5': { primary: '#f6d365', secondary: '#fda085' },
-        'color-6': { primary: '#b224ef', secondary: '#7579ff' },
-        'color-7': { primary: '#11998e', secondary: '#38ef7d' }
-    };
+const root = document.documentElement;
 
-    // افزودن رویداد کلیک برای هر کارت مستطیلی
-    colorCards.forEach(card => {
-        card.addEventListener('click', () => {
-            // شناسایی کلاس رنگی کلیک شده
-            const colorClass = Array.from(card.classList).find(c => c.startsWith('color-'));
+const themeName = document.getElementById("themeName");
 
-            if (colorClass && colorThemes[colorClass]) {
-                const selectedTheme = colorThemes[colorClass];
+const names = [
+    "CYBER BLUE",
+    "NEON PURPLE",
+    "TOXIC GREEN",
+    "INFERNO",
+    "ELECTRIC GOLD",
+    "AQUA",
+    "GALAXY"
+];
 
-                // تغییر رنگ متون و بخش‌های شاخص سایت
-                if (heroTitle) {
-                    heroTitle.style.color = selectedTheme.primary;
-                    heroTitle.style.textShadow = `0 0 15px ${selectedTheme.primary}`;
-                }
+themes.forEach((theme, index) => {
 
-                if (logoSpan) {
-                    logoSpan.style.color = selectedTheme.secondary;
-                }
+    theme.addEventListener("click", () => {
 
-                // افکت تصویری تایید انتخاب روی کارت
-                colorCards.forEach(c => c.style.border = '1px solid rgba(255, 255, 255, 0.1)');
-                card.style.border = `2px solid ${selectedTheme.primary}`;
-            }
+        const color1 = theme.dataset.color1;
+        const color2 = theme.dataset.color2;
+
+        // تغییر رنگ‌های اصلی سایت
+        root.style.setProperty("--color1", color1);
+        root.style.setProperty("--color2", color2);
+
+        // حذف active از همه
+        themes.forEach(item => {
+            item.classList.remove("active");
         });
+
+        // فعال کردن تم انتخاب‌شده
+        theme.classList.add("active");
+
+        // تغییر نام تم
+        themeName.textContent = names[index];
+
+        // افکت کوتاه
+        document.body.animate(
+            [
+                { opacity: 0.75 },
+                { opacity: 1 }
+            ],
+            {
+                duration: 250,
+                easing: "ease-out"
+            }
+        );
+
     });
+
+});
+
+
+// دکمه ورود
+const mainButton = document.querySelector(".main-button");
+
+mainButton.addEventListener("click", () => {
+
+    mainButton.innerHTML = "🎮 خوش اومدی به گیم لند!";
+
+    setTimeout(() => {
+        mainButton.innerHTML = 'ورود به دنیای گیم <span>➜</span>';
+    }, 2000);
+
 });
