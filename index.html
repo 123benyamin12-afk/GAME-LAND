@@ -3,77 +3,223 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Land | گیم لند - ماینکرافت</title>
+
+    <title>گیم لند | GAME LAND</title>
+
+    <!-- فونت‌ها -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
-    <!-- فونت وزرای استاندارد یا Vazirmatn -->
-    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
 </head>
+
 <body>
 
-    <!-- هدر سایت -->
-    <header class="navbar">
-        <div class="logo">GAME <span>LAND</span></div>
-        <nav>
-            <a href="#">خانه</a>
-            <a href="#">سرور ماینکرافت</a>
-            <a href="#">دانلودها</a>
-            <a href="#">ارتباط با ما</a>
-        </nav>
-    </header>
+    <!-- پس‌زمینه -->
+    <div class="background-grid"></div>
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
 
-    <!-- بخش اصلی معرفی -->
-    <section class="hero">
-        <h1>به دنیای <span>گیم لند</span> خوش آمدید!</h1>
-        <p>مرجع ویژه عشاق ماینکرافت - انتخاب استایل و رنگ‌های گیمینگ مورد علاقه شما</p>
-    </section>
+    <!-- هدر -->
+    <header class="header">
 
-    <!-- بخش ۷ رنگ ترکیبی و خفن گیمینگ -->
-    <section class="color-selection-container">
-        <h2>انتخاب ترکیب رنگ گیمینگ</h2>
-        <p class="subtitle">تم و ترکیب رنگ مورد علاقه خود را انتخاب کنید:</p>
+        <div class="logo">
+            <span class="logo-icon">🎮</span>
 
-        <div class="color-grid">
-            <!-- رنگ ۱: نئون بنفش و سیان -->
-            <div class="color-card color-1">
-                <span>Neon Cyber</span>
-            </div>
-
-            <!-- رنگ ۲: قرمز آتشین و نارنجی -->
-            <div class="color-card color-2">
-                <span>Magma Burst</span>
-            </div>
-
-            <!-- رنگ ۳: سبز سمّی و لیمویی -->
-            <div class="color-card color-3">
-                <span>Toxic Venom</span>
-            </div>
-
-            <!-- رنگ ۴: آبی هایپر و بنفش تیره -->
-            <div class="color-card color-4">
-                <span>Deep Ocean</span>
-            </div>
-
-            <!-- رنگ ۵: طلایی لوکس و زرد درخشان -->
-            <div class="color-card color-5">
-                <span>Golden Craft</span>
-            </div>
-
-            <!-- رنگ ۶: صورتی نئونی و بنفش مدرن -->
-            <div class="color-card color-6">
-                <span>Synthwave</span>
-            </div>
-
-            <!-- رنگ ۷: فیروزه‌ای خنک و مشکی‌سرمه‌ای -->
-            <div class="color-card color-7">
-                <span>Dark Emerald</span>
+            <div>
+                <h1>گیم لند</h1>
+                <span>GAME LAND</span>
             </div>
         </div>
-    </section>
+
+        <div class="status">
+            <span class="status-dot"></span>
+            ONLINE
+        </div>
+
+    </header>
+
+
+    <!-- بخش اصلی -->
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <div class="badge">
+                    ⚡ GAMING ZONE
+                </div>
+
+                <h2>
+                    دنیای خودت رو<br>
+                    <span>بساز و بازی کن!</span>
+                </h2>
+
+                <p>
+                    به گیم لند خوش اومدی؛ جایی برای گیمرهای واقعی 🎮
+                </p>
+
+                <button class="main-button">
+                    ورود به دنیای گیم
+                    <span>➜</span>
+                </button>
+
+            </div>
+
+            <div class="game-card">
+
+                <div class="card-top">
+                    <span>GAME LAND</span>
+                    <span>01</span>
+                </div>
+
+                <div class="controller">🎮</div>
+
+                <div class="card-bottom">
+                    <span>LEVEL UP</span>
+                    <span>∞</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- انتخاب تم -->
+        <section class="theme-section">
+
+            <div class="section-title">
+                <span class="line"></span>
+
+                <div>
+                    <h3>انتخاب تم</h3>
+                    <p>رنگ گیم لند رو انتخاب کن</p>
+                </div>
+
+                <span class="line"></span>
+            </div>
+
+
+            <div class="theme-box">
+
+                <!-- 1 -->
+                <button class="theme active"
+                        data-color1="#00eaff"
+                        data-color2="#0066ff"
+                        title="Cyber Blue">
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <!-- 2 -->
+                <button class="theme"
+                        data-color1="#b000ff"
+                        data-color2="#ff00c8"
+                        title="Neon Purple">
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <!-- 3 -->
+                <button class="theme"
+                        data-color1="#00ff88"
+                        data-color2="#00a86b"
+                        title="Toxic Green">
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <!-- 4 -->
+                <button class="theme"
+                        data-color1="#ff1744"
+                        data-color2="#ff6d00"
+                        title="Inferno">
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <!-- 5 -->
+                <button class="theme"
+                        data-color1="#ffe600"
+                        data-color2="#ff8c00"
+                        title="Electric Gold">
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <!-- 6 -->
+                <button class="theme"
+                        data-color1="#00ffd5"
+                        data-color2="#00a2ff"
+                        title="Aqua">
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <!-- 7 -->
+                <button class="theme"
+                        data-color1="#ff3cac"
+                        data-color2="#784ba0"
+                        title="Galaxy">
+                    <span></span>
+                    <span></span>
+                </button>
+
+            </div>
+
+            <div class="selected-theme">
+                <span class="selected-dot"></span>
+                <span id="themeName">CYBER BLUE</span>
+            </div>
+
+        </section>
+
+
+        <!-- کارت‌ها -->
+        <section class="features">
+
+            <div class="feature-card">
+                <div class="feature-icon">🎮</div>
+                <h3>GAME</h3>
+                <p>دنیای بازی‌ها</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>FAST</h3>
+                <p>سریع و حرفه‌ای</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🏆</div>
+                <h3>WIN</h3>
+                <p>برای قهرمان‌ها</p>
+            </div>
+
+        </section>
+
+    </main>
+
 
     <!-- فوتر -->
     <footer>
-        <p>© ۲۰۲۶ Game Land - تمامی حقوق برای کانال گیم لند محفوظ است.</p>
+        <div class="footer-logo">
+            🎮 GAME LAND
+        </div>
+
+        <p>
+            ساخته شده برای گیمرها ❤️
+        </p>
+
+        <span class="copyright">
+            © 2026 GAME LAND
+        </span>
     </footer>
 
+
+    <script src="script.js"></script>
+
 </body>
-</html>
+                        </html>
