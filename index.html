@@ -1,231 +1,79 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>GAME LAND</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Vazirmatn:wght@400;700;900&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    <title>Game Land | گیم لند - ماینکرافت</title>
     <link rel="stylesheet" href="style.css">
+    <!-- فونت وزرای استاندارد یا Vazirmatn -->
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
 </head>
+<body>
 
-<body class="theme-1">
-
-    <div class="cyber-grid"></div>
-    <div class="glow-orb"></div>
-
-
-    <!-- HEADER -->
-    <header>
-
-        <div class="logo">
-
-            <i class="fa-solid fa-gamepad logo-icon"></i>
-
-            <span class="logo-text">
-                GAME <span class="highlight">LAND</span>
-            </span>
-
-        </div>
-
-
+    <!-- هدر سایت -->
+    <header class="navbar">
+        <div class="logo">GAME <span>LAND</span></div>
         <nav>
-
-            <a href="#" class="active">
-                <i class="fa-solid fa-house"></i>
-                صفحه اصلی
-            </a>
-
-            <a href="#">
-                <i class="fa-solid fa-ghost"></i>
-                بازی‌ها
-            </a>
-
-            <a href="#">
-                <i class="fa-solid fa-fire"></i>
-                تورنمنت
-            </a>
-
-            <a href="#">
-                <i class="fa-solid fa-comments"></i>
-                جامعه گیمرها
-            </a>
-
+            <a href="#">خانه</a>
+            <a href="#">سرور ماینکرافت</a>
+            <a href="#">دانلودها</a>
+            <a href="#">ارتباط با ما</a>
         </nav>
-
     </header>
 
-
-    <!-- HERO -->
+    <!-- بخش اصلی معرفی -->
     <section class="hero">
-
-        <h1 class="hero-title">
-
-            ورود به دنیای بی‌انتهای
-
-            <br>
-
-            <span class="gradient-text">
-                GAME LAND
-            </span>
-
-        </h1>
-
-
-        <p class="hero-desc">
-
-            به بزرگ‌ترین مرجع گیمرهای حرفه‌ای خوش آمدید.
-            جدیدترین بازی‌ها، تورنمنت‌های کشوری و اخبار داغ
-            دنیای گیم را با ما تجربه کنید.
-
-        </p>
-
+        <h1>به دنیای <span>گیم لند</span> خوش آمدید!</h1>
+        <p>مرجع ویژه عشاق ماینکرافت - انتخاب استایل و رنگ‌های گیمینگ مورد علاقه شما</p>
     </section>
 
+    <!-- بخش ۷ رنگ ترکیبی و خفن گیمینگ -->
+    <section class="color-selection-container">
+        <h2>انتخاب ترکیب رنگ گیمینگ</h2>
+        <p class="subtitle">تم و ترکیب رنگ مورد علاقه خود را انتخاب کنید:</p>
 
-    <!-- FEATURES -->
-    <section class="features">
-
-
-        <div class="card">
-
-            <div class="card-icon">
-                <i class="fa-solid fa-trophy"></i>
+        <div class="color-grid">
+            <!-- رنگ ۱: نئون بنفش و سیان -->
+            <div class="color-card color-1">
+                <span>Neon Cyber</span>
             </div>
 
-            <h3>
-                چالش‌ها و مسابقات
-            </h3>
-
-            <p>
-                در مسابقات هفتگی شرکت کنید،
-                رتبه بزنید و جوایز میلیونی برنده شوید.
-            </p>
-
-        </div>
-
-
-        <div class="card">
-
-            <div class="card-icon">
-                <i class="fa-solid fa-headset"></i>
+            <!-- رنگ ۲: قرمز آتشین و نارنجی -->
+            <div class="color-card color-2">
+                <span>Magma Burst</span>
             </div>
 
-            <h3>
-                سرورهای اختصاصی
-            </h3>
-
-            <p>
-                اتصال بدون پینگ و با بالاترین سرعت
-                به سرورهای گیم لند.
-            </p>
-
-        </div>
-
-
-        <div class="card">
-
-            <div class="card-icon">
-                <i class="fa-solid fa-shield-halved"></i>
+            <!-- رنگ ۳: سبز سمّی و لیمویی -->
+            <div class="color-card color-3">
+                <span>Toxic Venom</span>
             </div>
 
-            <h3>
-                تیم‌سازی حرفه‌ای
-            </h3>
+            <!-- رنگ ۴: آبی هایپر و بنفش تیره -->
+            <div class="color-card color-4">
+                <span>Deep Ocean</span>
+            </div>
 
-            <p>
-                هم‌تیمی‌های جدید پیدا کنید
-                و کلن خودتان را بسازید.
-            </p>
+            <!-- رنگ ۵: طلایی لوکس و زرد درخشان -->
+            <div class="color-card color-5">
+                <span>Golden Craft</span>
+            </div>
 
+            <!-- رنگ ۶: صورتی نئونی و بنفش مدرن -->
+            <div class="color-card color-6">
+                <span>Synthwave</span>
+            </div>
+
+            <!-- رنگ ۷: فیروزه‌ای خنک و مشکی‌سرمه‌ای -->
+            <div class="color-card color-7">
+                <span>Dark Emerald</span>
+            </div>
         </div>
-
-
     </section>
 
-
-    <!-- THEME PANEL -->
-    <div class="theme-panel">
-
-
-        <div class="theme-title">
-
-            <i class="fa-solid fa-palette"></i>
-
-            <span>
-                رنگ سایت
-            </span>
-
-        </div>
-
-
-        <div class="color-options">
-
-
-            <button
-                class="color-picker active"
-                data-theme="theme-1"
-                style="background:linear-gradient(135deg,#00f3ff,#ff0055);">
-            </button>
-
-
-            <button
-                class="color-picker"
-                data-theme="theme-2"
-                style="background:linear-gradient(135deg,#7928ca,#ff0080);">
-            </button>
-
-
-            <button
-                class="color-picker"
-                data-theme="theme-3"
-                style="background:linear-gradient(135deg,#00ff87,#60efff);">
-            </button>
-
-
-            <button
-                class="color-picker"
-                data-theme="theme-4"
-                style="background:linear-gradient(135deg,#ff4e50,#f9d423);">
-            </button>
-
-
-            <button
-                class="color-picker"
-                data-theme="theme-5"
-                style="background:linear-gradient(135deg,#00c6ff,#0072ff);">
-            </button>
-
-
-            <button
-                class="color-picker"
-                data-theme="theme-6"
-                style="background:linear-gradient(135deg,#f857a6,#ff5858);">
-            </button>
-
-
-            <button
-                class="color-picker"
-                data-theme="theme-7"
-                style="background:linear-gradient(135deg,#f39c12,#d35400);">
-            </button>
-
-
-        </div>
-
-    </div>
-
-
-    <script src="script.js"></script>
+    <!-- فوتر -->
+    <footer>
+        <p>© ۲۰۲۶ Game Land - تمامی حقوق برای کانال گیم لند محفوظ است.</p>
+    </footer>
 
 </body>
 </html>
