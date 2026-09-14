@@ -1,168 +1,43 @@
-/* =========================
-   THEME COLORS
-========================= */
+document.addEventListener('DOMContentLoaded', () => {
+    // دریافت تمام کارت‌های رنگی و عناصر تغییرکننده
+    const colorCards = document.querySelectorAll('.color-card');
+    const heroTitle = document.querySelector('.hero h1 span');
+    const logoSpan = document.querySelector('.logo span');
 
-const root = document.documentElement;
+    // آرایه تعریف ترکیب رنگ‌ها (مطابق با کلاس‌های CSS)
+    const colorThemes = {
+        'color-1': { primary: '#00f2fe', secondary: '#4facfe' },
+        'color-2': { primary: '#ff0844', secondary: '#ffb199' },
+        'color-3': { primary: '#0ba360', secondary: '#3cba92' },
+        'color-4': { primary: '#654ea3', secondary: '#eaafc8' },
+        'color-5': { primary: '#f6d365', secondary: '#fda085' },
+        'color-6': { primary: '#b224ef', secondary: '#7579ff' },
+        'color-7': { primary: '#11998e', secondary: '#38ef7d' }
+    };
 
-const themes = document.querySelectorAll(".theme");
+    // افزودن رویداد کلیک برای هر کارت مستطیلی
+    colorCards.forEach(card => {
+        card.addEventListener('click', () => {
+            // شناسایی کلاس رنگی کلیک شده
+            const colorClass = Array.from(card.classList).find(c => c.startsWith('color-'));
 
-const selectedColor =
-    document.getElementById("selectedColor");
+            if (colorClass && colorThemes[colorClass]) {
+                const selectedTheme = colorThemes[colorClass];
 
+                // تغییر رنگ متون و بخش‌های شاخص سایت
+                if (heroTitle) {
+                    heroTitle.style.color = selectedTheme.primary;
+                    heroTitle.style.textShadow = `0 0 15px ${selectedTheme.primary}`;
+                }
 
-themes.forEach(theme => {
+                if (logoSpan) {
+                    logoSpan.style.color = selectedTheme.secondary;
+                }
 
-    theme.addEventListener("click", () => {
-
-        const main =
-            theme.getAttribute("data-main");
-
-        const second =
-            theme.getAttribute("data-second");
-
-        const name =
-            theme.getAttribute("data-name");
-
-
-        root.style.setProperty(
-            "--main",
-            main
-        );
-
-        root.style.setProperty(
-            "--second",
-            second
-        );
-
-
-        themes.forEach(item => {
-
-            item.classList.remove("active");
-
+                // افکت کادر نئونی روی مستطیل انتخاب‌شده
+                colorCards.forEach(c => c.style.border = '1px solid rgba(255, 255, 255, 0.1)');
+                card.style.border = `2px solid ${selectedTheme.primary}`;
+            }
         });
-
-
-        theme.classList.add("active");
-
-
-        selectedColor.textContent = name;
-
     });
-
-});
-
-
-
-/* =========================
-   MOBILE MENU
-========================= */
-
-const menuButton =
-    document.getElementById("menuButton");
-
-const mobileMenu =
-    document.getElementById("mobileMenu");
-
-
-menuButton.addEventListener("click", () => {
-
-    mobileMenu.classList.toggle("open");
-
-});
-
-
-const menuLinks =
-    document.querySelectorAll(".mobile-menu a");
-
-
-menuLinks.forEach(link => {
-
-    link.addEventListener("click", () => {
-
-        mobileMenu.classList.remove("open");
-
-    });
-
-});
-
-
-
-/* =========================
-   START BUTTON
-========================= */
-
-function scrollToGames() {
-
-    const games =
-        document.getElementById("games");
-
-    games.scrollIntoView({
-        behavior: "smooth"
-    });
-
-}
-
-
-
-/* =========================
-   GAME MODAL
-========================= */
-
-const modal =
-    document.getElementById("gameModal");
-
-const modalTitle =
-    document.getElementById("modalTitle");
-
-const modalText =
-    document.getElementById("modalText");
-
-
-function openGame(title, text) {
-
-    modalTitle.textContent = title;
-
-    modalText.textContent = text;
-
-    modal.classList.add("show");
-
-    document.body.style.overflow = "hidden";
-
-}
-
-
-function closeGame() {
-
-    modal.classList.remove("show");
-
-    document.body.style.overflow = "";
-
-}
-
-
-
-/* کلیک بیرون پنجره */
-
-modal.addEventListener("click", (event) => {
-
-    if (event.target === modal) {
-
-        closeGame();
-
-    }
-
-});
-
-
-
-/* دکمه ESC */
-
-document.addEventListener("keydown", (event) => {
-
-    if (event.key === "Escape") {
-
-        closeGame();
-
-    }
-
 });
