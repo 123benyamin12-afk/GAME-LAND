@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>گیم لند | GAME LAND</title>
+    <title>GAME LAND | گیم لند</title>
 
-    <!-- فونت‌ها -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
@@ -16,16 +16,25 @@
 
 <body>
 
-    <!-- پس‌زمینه -->
-    <div class="background-grid"></div>
-    <div class="glow glow-1"></div>
-    <div class="glow glow-2"></div>
+    <!-- Background -->
+    <div class="grid"></div>
+    <div class="scanlines"></div>
 
-    <!-- هدر -->
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+
+    <!-- Decorative shapes -->
+    <div class="shape shape1"></div>
+    <div class="shape shape2"></div>
+    <div class="shape shape3"></div>
+
+    <!-- HEADER -->
     <header class="header">
 
-        <div class="logo">
-            <span class="logo-icon">🎮</span>
+        <div class="brand">
+            <div class="brand-icon">
+                🎮
+            </div>
 
             <div>
                 <h1>گیم لند</h1>
@@ -33,53 +42,88 @@
             </div>
         </div>
 
-        <div class="status">
-            <span class="status-dot"></span>
-            ONLINE
+        <div class="online">
+            <i></i>
+            SYSTEM ONLINE
         </div>
 
     </header>
 
 
-    <!-- بخش اصلی -->
+    <!-- MAIN -->
     <main>
 
+        <!-- HERO -->
         <section class="hero">
 
-            <div class="hero-content">
+            <div class="hero-text">
 
-                <div class="badge">
-                    ⚡ GAMING ZONE
+                <div class="mini-title">
+                    <span>✦</span>
+                    WELCOME TO
+                    <span>✦</span>
                 </div>
 
                 <h2>
-                    دنیای خودت رو<br>
-                    <span>بساز و بازی کن!</span>
+                    دنیای
+                    <strong>گیم لند</strong>
                 </h2>
 
                 <p>
-                    به گیم لند خوش اومدی؛ جایی برای گیمرهای واقعی 🎮
+                    وارد دنیایی شو که بازی، هیجان و رقابت
+                    کنار هم قرار می‌گیرند.
                 </p>
 
-                <button class="main-button">
-                    ورود به دنیای گیم
-                    <span>➜</span>
-                </button>
+                <div class="hero-buttons">
+                    <button id="exploreBtn">
+                        شروع کنیم
+                        <span>➜</span>
+                    </button>
+
+                    <div class="players">
+                        <div>👤</div>
+                        <div>🎮</div>
+                        <div>⚡</div>
+                        <span>گیمرهای گیم لند</span>
+                    </div>
+                </div>
 
             </div>
 
-            <div class="game-card">
 
-                <div class="card-top">
-                    <span>GAME LAND</span>
-                    <span>01</span>
-                </div>
+            <!-- BIG GAMING BOX -->
+            <div class="cyber-box">
 
-                <div class="controller">🎮</div>
+                <div class="corner c1"></div>
+                <div class="corner c2"></div>
+                <div class="corner c3"></div>
+                <div class="corner c4"></div>
 
-                <div class="card-bottom">
-                    <span>LEVEL UP</span>
-                    <span>∞</span>
+                <div class="cyber-content">
+
+                    <span class="cyber-small">
+                        GAMING
+                    </span>
+
+                    <div class="controller">
+                        🎮
+                    </div>
+
+                    <h3>
+                        GAME<br>
+                        <span>LAND</span>
+                    </h3>
+
+                    <div class="equalizer">
+                        <b></b>
+                        <b></b>
+                        <b></b>
+                        <b></b>
+                        <b></b>
+                        <b></b>
+                        <b></b>
+                    </div>
+
                 </div>
 
             </div>
@@ -87,139 +131,293 @@
         </section>
 
 
-        <!-- انتخاب تم -->
-        <section class="theme-section">
+        <!-- THEME -->
+        <section class="theme-area">
 
-            <div class="section-title">
-                <span class="line"></span>
+            <div class="section-heading">
+                <span></span>
+                <div>
+                    <small>PERSONALIZE</small>
+                    <h3>تم سایت</h3>
+                </div>
+                <span></span>
+            </div>
+
+
+            <div class="theme-wrapper">
+
+                <div class="theme-label">
+                    <span>COLOR</span>
+                    <small>01 — 07</small>
+                </div>
+
+                <div class="theme-list">
+
+                    <button class="theme active"
+                        data-name="CYBER BLUE"
+                        data-a="#00eaff"
+                        data-b="#0066ff">
+                        <i></i>
+                        <i></i>
+                    </button>
+
+                    <button class="theme"
+                        data-name="NEON PURPLE"
+                        data-a="#b000ff"
+                        data-b="#ff00c8">
+                        <i></i>
+                        <i></i>
+                    </button>
+
+                    <button class="theme"
+                        data-name="TOXIC GREEN"
+                        data-a="#00ff88"
+                        data-b="#00a86b">
+                        <i></i>
+                        <i></i>
+                    </button>
+
+                    <button class="theme"
+                        data-name="INFERNO"
+                        data-a="#ff1744"
+                        data-b="#ff6d00">
+                        <i></i>
+                        <i></i>
+                    </button>
+
+                    <button class="theme"
+                        data-name="ELECTRIC"
+                        data-a="#ffe600"
+                        data-b="#ff8c00">
+                        <i></i>
+                        <i></i>
+                    </button>
+
+                    <button class="theme"
+                        data-name="AQUA"
+                        data-a="#00ffd5"
+                        data-b="#00a2ff">
+                        <i></i>
+                        <i></i>
+                    </button>
+
+                    <button class="theme"
+                        data-name="GALAXY"
+                        data-a="#ff3cac"
+                        data-b="#784ba0">
+                        <i></i>
+                        <i></i>
+                    </button>
+
+                </div>
+
+                <div class="current-theme">
+                    <span class="dot"></span>
+                    <span id="themeName">CYBER BLUE</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- GAMES -->
+        <section class="games" id="games">
+
+            <div class="section-heading">
+
+                <span></span>
 
                 <div>
-                    <h3>انتخاب تم</h3>
-                    <p>رنگ گیم لند رو انتخاب کن</p>
+                    <small>SELECT YOUR GAME</small>
+                    <h3>بازی‌ها</h3>
                 </div>
 
-                <span class="line"></span>
-            </div>
-
-
-            <div class="theme-box">
-
-                <!-- 1 -->
-                <button class="theme active"
-                        data-color1="#00eaff"
-                        data-color2="#0066ff"
-                        title="Cyber Blue">
-                    <span></span>
-                    <span></span>
-                </button>
-
-                <!-- 2 -->
-                <button class="theme"
-                        data-color1="#b000ff"
-                        data-color2="#ff00c8"
-                        title="Neon Purple">
-                    <span></span>
-                    <span></span>
-                </button>
-
-                <!-- 3 -->
-                <button class="theme"
-                        data-color1="#00ff88"
-                        data-color2="#00a86b"
-                        title="Toxic Green">
-                    <span></span>
-                    <span></span>
-                </button>
-
-                <!-- 4 -->
-                <button class="theme"
-                        data-color1="#ff1744"
-                        data-color2="#ff6d00"
-                        title="Inferno">
-                    <span></span>
-                    <span></span>
-                </button>
-
-                <!-- 5 -->
-                <button class="theme"
-                        data-color1="#ffe600"
-                        data-color2="#ff8c00"
-                        title="Electric Gold">
-                    <span></span>
-                    <span></span>
-                </button>
-
-                <!-- 6 -->
-                <button class="theme"
-                        data-color1="#00ffd5"
-                        data-color2="#00a2ff"
-                        title="Aqua">
-                    <span></span>
-                    <span></span>
-                </button>
-
-                <!-- 7 -->
-                <button class="theme"
-                        data-color1="#ff3cac"
-                        data-color2="#784ba0"
-                        title="Galaxy">
-                    <span></span>
-                    <span></span>
-                </button>
+                <span></span>
 
             </div>
 
-            <div class="selected-theme">
-                <span class="selected-dot"></span>
-                <span id="themeName">CYBER BLUE</span>
+
+            <div class="game-grid">
+
+                <!-- Minecraft -->
+                <article class="game-card minecraft"
+                    data-game="minecraft">
+
+                    <div class="number">01</div>
+
+                    <div class="game-icon">⛏️</div>
+
+                    <div class="game-info">
+                        <span>MINECRAFT</span>
+                        <h4>ماینکرافت</h4>
+                        <p>
+                            ساختن، ماجراجویی و زنده ماندن
+                            در یک دنیای بی‌نهایت.
+                        </p>
+                    </div>
+
+                    <button>
+                        مشاهده
+                        <span>↗</span>
+                    </button>
+
+                </article>
+
+
+                <!-- COD -->
+                <article class="game-card cod"
+                    data-game="cod">
+
+                    <div class="number">02</div>
+
+                    <div class="game-icon">🔫</div>
+
+                    <div class="game-info">
+                        <span>CALL OF DUTY</span>
+                        <h4>کالاف دیوتی</h4>
+                        <p>
+                            رقابت، تیراندازی و نبرد
+                            در میدان‌های هیجان‌انگیز.
+                        </p>
+                    </div>
+
+                    <button>
+                        مشاهده
+                        <span>↗</span>
+                    </button>
+
+                </article>
+
+
+                <!-- Clash -->
+                <article class="game-card clash"
+                    data-game="clash">
+
+                    <div class="number">03</div>
+
+                    <div class="game-icon">⚔️</div>
+
+                    <div class="game-info">
+                        <span>CLASH</span>
+                        <h4>کلش</h4>
+                        <p>
+                            دهکده خودت را بساز و برای
+                            پیروزی بجنگ.
+                        </p>
+                    </div>
+
+                    <button>
+                        مشاهده
+                        <span>↗</span>
+                    </button>
+
+                </article>
+
+
+                <!-- PUBG -->
+                <article class="game-card pubg"
+                    data-game="pubg">
+
+                    <div class="number">04</div>
+
+                    <div class="game-icon">🪂</div>
+
+                    <div class="game-info">
+                        <span>PUBG MOBILE</span>
+                        <h4>پابجی</h4>
+                        <p>
+                            وارد میدان نبرد شو و برای
+                            آخرین نفر بودن رقابت کن.
+                        </p>
+                    </div>
+
+                    <button>
+                        مشاهده
+                        <span>↗</span>
+                    </button>
+
+                </article>
+
             </div>
 
         </section>
 
 
-        <!-- کارت‌ها -->
-        <section class="features">
+        <!-- GAME MODAL -->
+        <div class="modal" id="gameModal">
 
-            <div class="feature-card">
-                <div class="feature-icon">🎮</div>
-                <h3>GAME</h3>
-                <p>دنیای بازی‌ها</p>
+            <div class="modal-box">
+
+                <button class="close" id="closeModal">
+                    ×
+                </button>
+
+                <div class="modal-icon" id="modalIcon">
+                    🎮
+                </div>
+
+                <span id="modalEnglish">
+                    GAME
+                </span>
+
+                <h3 id="modalTitle">
+                    بازی
+                </h3>
+
+                <p id="modalDescription">
+                    توضیحات بازی
+                </p>
+
+                <div class="modal-line"></div>
+
+                <div class="modal-stats">
+
+                    <div>
+                        <strong id="modalType">
+                            ACTION
+                        </strong>
+                        <small>TYPE</small>
+                    </div>
+
+                    <div>
+                        <strong>ONLINE</strong>
+                        <small>MODE</small>
+                    </div>
+
+                    <div>
+                        <strong>★★★★</strong>
+                        <small>RATING</small>
+                    </div>
+
+                </div>
+
             </div>
 
-            <div class="feature-card">
-                <div class="feature-icon">⚡</div>
-                <h3>FAST</h3>
-                <p>سریع و حرفه‌ای</p>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">🏆</div>
-                <h3>WIN</h3>
-                <p>برای قهرمان‌ها</p>
-            </div>
-
-        </section>
+        </div>
 
     </main>
 
 
-    <!-- فوتر -->
+    <!-- FOOTER -->
     <footer>
+
         <div class="footer-logo">
             🎮 GAME LAND
         </div>
 
         <p>
-            ساخته شده برای گیمرها ❤️
+            بازی کن • رقابت کن • لذت ببر
         </p>
 
-        <span class="copyright">
+        <small>
             © 2026 GAME LAND
-        </span>
+        </small>
+
     </footer>
 
 
     <script src="script.js"></script>
 
 </body>
-                        </html>
+    </html>
