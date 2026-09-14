@@ -1,303 +1,436 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <title>GAME LAND | گیم لند</title>
 
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=Vazirmatn:wght@400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <div class="background-grid"></div>
-    <div class="glow glow1"></div>
-    <div class="glow glow2"></div>
+<!-- Background -->
+<div class="grid-bg"></div>
+<div class="light light-one"></div>
+<div class="light light-two"></div>
 
-    <!-- HEADER -->
-    <header>
 
-        <div class="logo">
-            <span>GAME</span>
-            <strong>LAND</strong>
+<!-- HEADER -->
+<header class="header">
+
+    <div class="brand">
+        <div class="brand-icon">G</div>
+
+        <div>
+            <div class="brand-en">GAME<span>LAND</span></div>
+            <div class="brand-fa">گیم لند</div>
         </div>
+    </div>
 
-        <div class="persian-logo">گیم لند</div>
+    <button class="menu-button" id="menuButton">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
 
-        <nav>
-            <a href="#home">خانه</a>
-            <a href="#games">بازی‌ها</a>
-            <a href="#themes">رنگ‌ها</a>
-        </nav>
+</header>
 
-    </header>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+
+    <a href="#home">خانه</a>
+    <a href="#colors">رنگ‌ها</a>
+    <a href="#games">بازی‌ها</a>
+
+</div>
+
+
+<main id="home">
 
 
     <!-- HERO -->
-    <main id="home">
+    <section class="hero">
 
-        <section class="hero">
+        <div class="hero-top">
 
-            <div class="hero-text">
+            <div class="status">
+                <span class="status-dot"></span>
+                GAMING ZONE
+            </div>
 
-                <div class="small-title">
-                    <span></span>
-                    WELCOME TO GAME LAND
-                    <span></span>
+            <div class="hero-number">01</div>
+
+        </div>
+
+
+        <div class="hero-title">
+
+            <span class="mini-text">WELCOME TO</span>
+
+            <h1>
+                GAME
+                <strong>LAND</strong>
+            </h1>
+
+            <div class="title-line">
+                <span></span>
+                <b>گیم لند</b>
+                <span></span>
+            </div>
+
+        </div>
+
+
+        <p class="hero-description">
+            وارد دنیای گیم شو،
+            بازی مورد علاقه‌ات را انتخاب کن
+            و آماده‌ی نبرد شو.
+        </p>
+
+
+        <button class="start-button" onclick="scrollToGames()">
+            <span>شروع بازی</span>
+            <b>↙</b>
+        </button>
+
+
+        <!-- Decorative Gaming Shape -->
+        <div class="hero-visual">
+
+            <div class="visual-ring ring-one"></div>
+            <div class="visual-ring ring-two"></div>
+
+            <div class="visual-center">
+                <span>G</span>
+                <b>L</b>
+            </div>
+
+            <div class="visual-line line-top"></div>
+            <div class="visual-line line-bottom"></div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- COLORS -->
+    <section class="section" id="colors">
+
+        <div class="section-heading">
+
+            <div class="section-number">02</div>
+
+            <div>
+                <h2>انتخاب رنگ</h2>
+                <p>تم مورد علاقه‌ات را انتخاب کن</p>
+            </div>
+
+        </div>
+
+
+        <!-- LONG COLOR BOX -->
+        <div class="color-panel">
+
+            <div class="color-panel-top">
+
+                <div>
+                    <span class="english-label">THEME COLORS</span>
+                    <strong>رنگ سایت</strong>
                 </div>
 
-                <h1>
-                    دنیای
-                    <b>گیم</b>
-                    اینجاست
-                </h1>
+                <div class="selected-color" id="selectedColor">
+                    CYAN
+                </div>
 
-                <p>
-                    وارد دنیای بازی شو، بازی مورد علاقه‌ات رو انتخاب کن
-                    و وارد سرزمین گیمرها شو.
-                </p>
+            </div>
 
-                <button onclick="goGames()">
-                    شروع بازی
-                    <span>➜</span>
+
+            <div class="color-list">
+
+                <button class="theme active"
+                        data-name="CYAN"
+                        data-main="#00e5ff"
+                        data-second="#0066ff"
+                        style="--c1:#00e5ff; --c2:#0066ff;">
+                    <span></span>
+                </button>
+
+                <button class="theme"
+                        data-name="PURPLE"
+                        data-main="#b026ff"
+                        data-second="#6a00ff"
+                        style="--c1:#b026ff; --c2:#6a00ff;">
+                    <span></span>
+                </button>
+
+                <button class="theme"
+                        data-name="GREEN"
+                        data-main="#00ff88"
+                        data-second="#00b85c"
+                        style="--c1:#00ff88; --c2:#00b85c;">
+                    <span></span>
+                </button>
+
+                <button class="theme"
+                        data-name="RED"
+                        data-main="#ff1744"
+                        data-second="#ff0055"
+                        style="--c1:#ff1744; --c2:#ff0055;">
+                    <span></span>
+                </button>
+
+                <button class="theme"
+                        data-name="GOLD"
+                        data-main="#ffe600"
+                        data-second="#ff9100"
+                        style="--c1:#ffe600; --c2:#ff9100;">
+                    <span></span>
+                </button>
+
+                <button class="theme"
+                        data-name="VIOLET"
+                        data-main="#8c52ff"
+                        data-second="#00e5ff"
+                        style="--c1:#8c52ff; --c2:#00e5ff;">
+                    <span></span>
+                </button>
+
+                <button class="theme"
+                        data-name="PINK"
+                        data-main="#ff3d81"
+                        data-second="#ff0066"
+                        style="--c1:#ff3d81; --c2:#ff0066;">
+                    <span></span>
                 </button>
 
             </div>
 
+        </div>
 
-            <div class="hero-shape">
+    </section>
 
-                <div class="cube">
-                    <div>GAME</div>
-                    <strong>LAND</strong>
-                </div>
 
-                <div class="circle c1"></div>
-                <div class="circle c2"></div>
-                <div class="line l1"></div>
-                <div class="line l2"></div>
 
+    <!-- GAMES -->
+    <section class="section games-section" id="games">
+
+        <div class="section-heading">
+
+            <div class="section-number">03</div>
+
+            <div>
+                <h2>بازی‌ها</h2>
+                <p>بازی مورد علاقه‌ات را انتخاب کن</p>
             </div>
-
-        </section>
-
-
-        <!-- THEMES -->
-        <section id="themes" class="theme-section">
-
-            <div class="section-title">
-                <span>01</span>
-                <div>
-                    <h2>انتخاب رنگ</h2>
-                    <p>تم مورد علاقه‌ات را انتخاب کن</p>
-                </div>
-            </div>
-
-
-            <div class="theme-box">
-
-                <div class="theme-info">
-                    <span class="theme-icon">◈</span>
-                    <div>
-                        <b>GAMING COLORS</b>
-                        <small>رنگ سایت را تغییر بده</small>
-                    </div>
-                </div>
-
-
-                <div class="colors">
-
-                    <button class="color active"
-                        data-main="#00f0ff"
-                        data-second="#0066ff"
-                        style="--a:#00f0ff;--b:#0066ff">
-                    </button>
-
-                    <button class="color"
-                        data-main="#b026ff"
-                        data-second="#ff00c8"
-                        style="--a:#b026ff;--b:#ff00c8">
-                    </button>
-
-                    <button class="color"
-                        data-main="#00ff88"
-                        data-second="#00c853"
-                        style="--a:#00ff88;--b:#00c853">
-                    </button>
-
-                    <button class="color"
-                        data-main="#ff1744"
-                        data-second="#ff6d00"
-                        style="--a:#ff1744;--b:#ff6d00">
-                    </button>
-
-                    <button class="color"
-                        data-main="#ffe600"
-                        data-second="#ff9100"
-                        style="--a:#ffe600;--b:#ff9100">
-                    </button>
-
-                    <button class="color"
-                        data-main="#8c52ff"
-                        data-second="#00e5ff"
-                        style="--a:#8c52ff;--b:#00e5ff">
-                    </button>
-
-                    <button class="color"
-                        data-main="#ff3d81"
-                        data-second="#ff0055"
-                        style="--a:#ff3d81;--b:#ff0055">
-                    </button>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- GAMES -->
-        <section id="games" class="games-section">
-
-            <div class="section-title">
-                <span>02</span>
-                <div>
-                    <h2>بازی‌ها</h2>
-                    <p>بازی مورد علاقه‌ات را انتخاب کن</p>
-                </div>
-            </div>
-
-
-            <div class="games-grid">
-
-                <!-- Minecraft -->
-                <article class="game-card minecraft"
-                    onclick="openGame('Minecraft','ساخت، بقا و ماجراجویی در یک دنیای بی‌نهایت.')">
-
-                    <div class="game-number">01</div>
-
-                    <div class="game-symbol">▦</div>
-
-                    <div class="game-content">
-                        <span>MOJANG</span>
-                        <h3>MINECRAFT</h3>
-                        <p>ساخت و ساز • بقا • ماجراجویی</p>
-                    </div>
-
-                    <div class="card-arrow">↗</div>
-
-                </article>
-
-
-                <!-- COD -->
-                <article class="game-card cod"
-                    onclick="openGame('Call of Duty','نبردهای سریع و هیجان‌انگیز در دنیای Call of Duty.')">
-
-                    <div class="game-number">02</div>
-
-                    <div class="game-symbol">✦</div>
-
-                    <div class="game-content">
-                        <span>ACTIVISION</span>
-                        <h3>CALL OF DUTY</h3>
-                        <p>اکشن • تیراندازی • رقابتی</p>
-                    </div>
-
-                    <div class="card-arrow">↗</div>
-
-                </article>
-
-
-                <!-- Clash -->
-                <article class="game-card clash"
-                    onclick="openGame('Clash','ارتش خودت را بساز و در نبردهای هیجان‌انگیز پیروز شو.')">
-
-                    <div class="game-number">03</div>
-
-                    <div class="game-symbol">◆</div>
-
-                    <div class="game-content">
-                        <span>SUPERCELL</span>
-                        <h3>CLASH</h3>
-                        <p>استراتژی • نبرد • ساخت دهکده</p>
-                    </div>
-
-                    <div class="card-arrow">↗</div>
-
-                </article>
-
-
-                <!-- PUBG -->
-                <article class="game-card pubg"
-                    onclick="openGame('PUBG','در میدان نبرد بجنگ و آخرین بازمانده باش.')">
-
-                    <div class="game-number">04</div>
-
-                    <div class="game-symbol">⬢</div>
-
-                    <div class="game-content">
-                        <span>KRAFTON</span>
-                        <h3>PUBG</h3>
-                        <p>بتل رویال • بقا • رقابت</p>
-                    </div>
-
-                    <div class="card-arrow">↗</div>
-
-                </article>
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-    <!-- MODAL -->
-    <div class="modal" id="modal">
-
-        <div class="modal-box">
-
-            <button class="close" onclick="closeGame()">×</button>
-
-            <div class="modal-line"></div>
-
-            <span class="modal-small">GAME LAND</span>
-
-            <h2 id="modalTitle"></h2>
-
-            <p id="modalText"></p>
-
-            <button class="modal-button" onclick="closeGame()">
-                برگشت به بازی‌ها
-            </button>
 
         </div>
+
+
+        <div class="games-list">
+
+
+            <!-- MINECRAFT -->
+            <article class="game-card minecraft"
+                     onclick="openGame(
+                     'MINECRAFT',
+                     'ساخت و ساز، بقا و ماجراجویی در یک دنیای بی‌نهایت.'
+                     )">
+
+                <div class="game-background">MC</div>
+
+                <div class="game-top">
+                    <span class="game-index">01</span>
+                    <span class="game-type">SURVIVAL</span>
+                </div>
+
+                <div class="game-icon">▦</div>
+
+                <div class="game-info">
+
+                    <span>MOJANG</span>
+
+                    <h3>MINECRAFT</h3>
+
+                    <p>
+                        ساخت • بقا • ماجراجویی
+                    </p>
+
+                </div>
+
+                <div class="game-arrow">↗</div>
+
+            </article>
+
+
+
+            <!-- CALL OF DUTY -->
+            <article class="game-card cod"
+                     onclick="openGame(
+                     'CALL OF DUTY',
+                     'نبردهای سریع، هیجان‌انگیز و رقابتی در میدان جنگ.'
+                     )">
+
+                <div class="game-background">COD</div>
+
+                <div class="game-top">
+                    <span class="game-index">02</span>
+                    <span class="game-type">ACTION</span>
+                </div>
+
+                <div class="game-icon">✦</div>
+
+                <div class="game-info">
+
+                    <span>ACTIVISION</span>
+
+                    <h3>CALL OF DUTY</h3>
+
+                    <p>
+                        اکشن • تیراندازی • رقابتی
+                    </p>
+
+                </div>
+
+                <div class="game-arrow">↗</div>
+
+            </article>
+
+
+
+            <!-- CLASH -->
+            <article class="game-card clash"
+                     onclick="openGame(
+                     'CLASH',
+                     'ارتش خودت را بساز و در نبردهای استراتژیک پیروز شو.'
+                     )">
+
+                <div class="game-background">CL</div>
+
+                <div class="game-top">
+                    <span class="game-index">03</span>
+                    <span class="game-type">STRATEGY</span>
+                </div>
+
+                <div class="game-icon">◆</div>
+
+                <div class="game-info">
+
+                    <span>SUPERCELL</span>
+
+                    <h3>CLASH</h3>
+
+                    <p>
+                        استراتژی • نبرد • ساخت
+                    </p>
+
+                </div>
+
+                <div class="game-arrow">↗</div>
+
+            </article>
+
+
+
+            <!-- PUBG -->
+            <article class="game-card pubg"
+                     onclick="openGame(
+                     'PUBG',
+                     'در میدان نبرد بجنگ و برای آخرین بازمانده شدن تلاش کن.'
+                     )">
+
+                <div class="game-background">PUBG</div>
+
+                <div class="game-top">
+                    <span class="game-index">04</span>
+                    <span class="game-type">BATTLE ROYALE</span>
+                </div>
+
+                <div class="game-icon">⬢</div>
+
+                <div class="game-info">
+
+                    <span>KRAFTON</span>
+
+                    <h3>PUBG</h3>
+
+                    <p>
+                        بتل رویال • بقا • رقابت
+                    </p>
+
+                </div>
+
+                <div class="game-arrow">↗</div>
+
+            </article>
+
+
+        </div>
+
+    </section>
+
+</main>
+
+
+
+<!-- MODAL -->
+<div class="modal" id="gameModal">
+
+    <div class="modal-box">
+
+        <button class="modal-close" onclick="closeGame()">×</button>
+
+        <span class="modal-label">GAME LAND</span>
+
+        <div class="modal-line"></div>
+
+        <h2 id="modalTitle"></h2>
+
+        <p id="modalText"></p>
+
+        <button class="modal-button" onclick="closeGame()">
+            بستن
+        </button>
 
     </div>
 
-
-    <footer>
-
-        <div class="footer-logo">
-            GAME<span>LAND</span>
-        </div>
-
-        <p>ساخته شده برای گیمرها 🎮</p>
-
-        <div class="footer-line"></div>
-
-        <small>© 2026 GAME LAND</small>
-
-    </footer>
+</div>
 
 
-    <script src="script.js"></script>
+
+<!-- FOOTER -->
+<footer>
+
+    <div class="footer-logo">
+        GAME<span>LAND</span>
+    </div>
+
+    <p>
+        دنیای گیمرها اینجاست 🎮
+    </p>
+
+    <div class="footer-divider"></div>
+
+    <small>
+        © 2026 GAME LAND
+    </small>
+
+</footer>
+
+
+<script src="script.js"></script>
 
 </body>
             </html>
