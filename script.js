@@ -1,132 +1,10 @@
-// ==========================================
-// GAME LAND - OPTIMIZED 3D
-// ==========================================
-
-const light = document.querySelector(".cursor-light");
-
-
-// ===============================
-// CURSOR LIGHT
-// ===============================
-
-let mouseX = 0;
-let mouseY = 0;
-let lightX = 0;
-let lightY = 0;
-
-document.addEventListener("mousemove", e => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-});
-
-function moveLight(){
-
-    lightX += (mouseX - lightX) * 0.12;
-    lightY += (mouseY - lightY) * 0.12;
-
-    if(light){
-        light.style.left = lightX + "px";
-        light.style.top = lightY + "px";
-    }
-
-    requestAnimationFrame(moveLight);
-}
-
-moveLight();
+/* =====================================================
+   GAME LAND
+   LIGHTWEIGHT JAVASCRIPT
+===================================================== */
 
 
-// ===============================
-// PARTICLES
-// فقط 22 ذره برای عملکرد بهتر
-// ===============================
-
-const particleBox = document.querySelector("#particles");
-
-for(let i = 0; i < 22; i++){
-
-    const p = document.createElement("span");
-
-    p.className = "particle";
-
-    p.style.left = Math.random() * 100 + "%";
-
-    p.style.animationDuration =
-        (7 + Math.random() * 10) + "s";
-
-    p.style.animationDelay =
-        Math.random() * 10 + "s";
-
-    particleBox.appendChild(p);
-}
-
-
-// ===============================
-// TYPING
-// ===============================
-
-const typing = document.querySelector(".typing");
-
-const words = [
-    "WELCOME GAMER 🎮",
-    "ENTER GAME LAND",
-    "PLAY • WIN • REPEAT"
-];
-
-let word = 0;
-let letter = 0;
-let deleting = false;
-
-function typingEffect(){
-
-    const current = words[word];
-
-    if(!deleting){
-
-        typing.textContent =
-            current.substring(0, letter + 1);
-
-        letter++;
-
-        if(letter === current.length){
-
-            deleting = true;
-
-            setTimeout(typingEffect, 1500);
-
-            return;
-        }
-
-    }else{
-
-        typing.textContent =
-            current.substring(0, letter - 1);
-
-        letter--;
-
-        if(letter === 0){
-
-            deleting = false;
-
-            word++;
-
-            if(word >= words.length){
-                word = 0;
-            }
-        }
-    }
-
-    setTimeout(
-        typingEffect,
-        deleting ? 55 : 100
-    );
-}
-
-typingEffect();
-
-
-// ===============================
-// GAME DATA
-// ===============================
+/* ================= GAME DATA ================= */
 
 const games = {
 
@@ -173,54 +51,58 @@ const games = {
         rating:"9.0/10",
         mode:"Online"
     }
+
 };
 
 
-// ===============================
-// MODAL
-// ===============================
+/* ================= MODAL ================= */
 
-const modal = document.querySelector("#gameModal");
+const modal =
+    document.getElementById("gameModal");
 
-const cards = document.querySelectorAll(".game-card");
+const closeModalButton =
+    document.getElementById("closeModal");
 
-cards.forEach(card => {
-
-    card.addEventListener("click", () => {
-
-        const data = games[card.dataset.game];
-
-        if(!data) return;
-
-        document.querySelector("#modalIcon").textContent =
-            data.icon;
-
-        document.querySelector("#modalTitle").textContent =
-            data.title;
-
-        document.querySelector("#modalTag").textContent =
-            data.tag;
-
-        document.querySelector("#modalDescription").textContent =
-            data.description;
-
-        document.querySelector("#modalGenre").textContent =
-            data.genre;
-
-        document.querySelector("#modalRating").textContent =
-            data.rating;
-
-        document.querySelector("#modalMode").textContent =
-            data.mode;
-
-        modal.classList.add("active");
-
-        document.body.style.overflow = "hidden";
-    });
-});
+const cards =
+    document.querySelectorAll(".game-card");
 
 
-function closeModal(){
+function openGame(gameName){
+
+    const game = games[gameName];
+
+    if(!game){
+        return;
+    }
+
+    document.getElementById("modalIcon")
+        .textContent = game.icon;
+
+    document.getElementById("modalTitle")
+        .textContent = game.title;
+
+    document.getElementById("modalTag")
+        .textContent = game.tag;
+
+    document.getElementById("modalDescription")
+        .textContent = game.description;
+
+    document.getElementById("modalGenre")
+        .textContent = game.genre;
+
+    document.getElementById("modalRating")
+        .textContent = game.rating;
+
+    document.getElementById("modalMode")
+        .textContent = game.mode;
+
+    modal.classList.add("active");
+
+    document.body.style.overflow = "hidden";
+}
+
+
+function closeGame(){
 
     modal.classList.remove("active");
 
@@ -228,32 +110,170 @@ function closeModal(){
 }
 
 
-document
-    .querySelector(".close-modal")
-    .addEventListener("click", closeModal);
+cards.forEach(card => {
+
+    card.addEventListener("click", () => {
+
+        openGame(card.dataset.game);
+
+    });
+
+});
 
 
-modal.addEventListener("click", e => {
+closeModalButton.addEventListener(
+    "click",
+    closeGame
+);
 
-    if(e.target === modal){
-        closeModal();
+
+modal.addEventListener("click", event => {
+
+    if(event.target === modal){
+
+        closeGame();
+
     }
 
 });
 
 
-document.addEventListener("keydown", e => {
+document.addEventListener("keydown", event => {
 
-    if(e.key === "Escape"){
-        closeModal();
+    if(event.key === "Escape"){
+
+        closeGame();
+
     }
 
 });
 
 
-// ===============================
-// THEMES
-// ===============================
+/* ================= 3D CARDS ================= */
+
+/*
+   روی کامپیوتر:
+   کارت‌ها با حرکت موس سه‌بعدی می‌شوند.
+
+   روی موبایل:
+   این افکت خاموش است تا هنگام اسکرول
+   باعث لگ نشود.
+*/
+
+const desktop =
+    window.matchMedia("(min-width:801px)").matches;
+
+
+if(desktop){
+
+    cards.forEach(card => {
+
+        let animationFrame = null;
+
+        let targetX = 0;
+        let targetY = 0;
+
+        let currentX = 0;
+        let currentY = 0;
+
+
+        function animateCard(){
+
+            currentX +=
+                (targetX - currentX) * 0.15;
+
+            currentY +=
+                (targetY - currentY) * 0.15;
+
+
+            card.style.transform =
+                `
+                perspective(800px)
+                rotateX(${currentY}deg)
+                rotateY(${targetX}deg)
+                translateY(-5px)
+                `;
+
+
+            if(
+                Math.abs(targetX-currentX) > 0.05 ||
+                Math.abs(targetY-currentY) > 0.05
+            ){
+
+                animationFrame =
+                    requestAnimationFrame(
+                        animateCard
+                    );
+
+            }else{
+
+                animationFrame = null;
+
+            }
+
+        }
+
+
+        card.addEventListener(
+            "mousemove",
+            event => {
+
+                const rect =
+                    card.getBoundingClientRect();
+
+                const x =
+                    event.clientX - rect.left;
+
+                const y =
+                    event.clientY - rect.top;
+
+
+                targetX =
+                    ((x / rect.width) - 0.5) * 8;
+
+                targetY =
+                    ((y / rect.height) - 0.5) * -8;
+
+
+                if(!animationFrame){
+
+                    animationFrame =
+                        requestAnimationFrame(
+                            animateCard
+                        );
+
+                }
+
+            }
+        );
+
+
+        card.addEventListener(
+            "mouseleave",
+            () => {
+
+                targetX = 0;
+                targetY = 0;
+
+
+                if(!animationFrame){
+
+                    animationFrame =
+                        requestAnimationFrame(
+                            animateCard
+                        );
+
+                }
+
+            }
+        );
+
+    });
+
+}
+
+
+/* ================= THEMES ================= */
 
 const themes = {
 
@@ -292,193 +312,141 @@ const themes = {
         secondary:"#ff3d00",
         name:"ORANGE"
     }
+
 };
 
+
 const themeButtons =
-    document.querySelectorAll(".theme-color");
+    document.querySelectorAll(".theme");
 
 const themeName =
-    document.querySelector("#themeName");
+    document.getElementById("themeName");
 
 
-function changeTheme(name){
+function setTheme(name){
 
-    const theme = themes[name];
+    const theme =
+        themes[name];
 
-    if(!theme) return;
-
-    document.documentElement.style
-        .setProperty("--primary", theme.primary);
-
-    document.documentElement.style
-        .setProperty("--secondary", theme.secondary);
-
-    themeName.textContent = theme.name;
-
-    themeButtons.forEach(btn => {
-        btn.classList.remove("active");
-    });
-
-    const selected =
-        document.querySelector(
-            `[data-theme="${name}"]`
-        );
-
-    if(selected){
-        selected.classList.add("active");
+    if(!theme){
+        return;
     }
 
-    localStorage.setItem(
-        "GAME_LAND_THEME",
-        name
-    );
+
+    document.documentElement.style
+        .setProperty(
+            "--primary",
+            theme.primary
+        );
+
+
+    document.documentElement.style
+        .setProperty(
+            "--secondary",
+            theme.secondary
+        );
+
+
+    themeName.textContent =
+        theme.name;
+
+
+    themeButtons.forEach(button => {
+
+        button.classList.remove("active");
+
+    });
+
+
+    const activeButton =
+        document.querySelector(
+            `.theme[data-theme="${name}"]`
+        );
+
+
+    if(activeButton){
+
+        activeButton.classList.add("active");
+
+    }
+
+
+    try{
+
+        localStorage.setItem(
+            "GAME_LAND_THEME",
+            name
+        );
+
+    }catch(error){
+
+        // اگر localStorage در مرورگر در دسترس نبود
+        // سایت همچنان کار می‌کند.
+
+    }
+
 }
 
 
+/* ================= THEME CLICK ================= */
+
 themeButtons.forEach(button => {
 
-    button.addEventListener("click", () => {
+    button.addEventListener(
+        "click",
+        () => {
 
-        changeTheme(
-            button.dataset.theme
+            setTheme(
+                button.dataset.theme
+            );
+
+        }
+    );
+
+});
+
+
+/* ================= LOAD THEME ================= */
+
+let savedTheme = null;
+
+try{
+
+    savedTheme =
+        localStorage.getItem(
+            "GAME_LAND_THEME"
+        );
+
+}catch(error){
+
+    savedTheme = null;
+
+}
+
+
+setTheme(
+    savedTheme || "cyan"
+);
+
+
+/* ================= BUTTON FIX ================= */
+
+/*
+   جلوگیری از این‌که کلیک روی دکمه
+   دوبار روی کارت اجرا شود.
+*/
+
+document
+    .querySelectorAll(".more")
+    .forEach(button => {
+
+        button.addEventListener(
+            "click",
+            event => {
+
+                event.stopPropagation();
+
+            }
         );
 
     });
-
-});
-
-
-const savedTheme =
-    localStorage.getItem("GAME_LAND_THEME");
-
-changeTheme(savedTheme || "cyan");
-
-
-// ===============================
-// 3D GAME CARDS
-// بهینه‌شده با requestAnimationFrame
-// ===============================
-
-cards.forEach(card => {
-
-    let frame = null;
-
-    let targetX = 0;
-    let targetY = 0;
-
-    let currentX = 0;
-    let currentY = 0;
-
-    card.addEventListener("mousemove", e => {
-
-        const rect =
-            card.getBoundingClientRect();
-
-        const x =
-            e.clientX - rect.left;
-
-        const y =
-            e.clientY - rect.top;
-
-        targetY =
-            ((x / rect.width) - 0.5) * 9;
-
-        targetX =
-            ((y / rect.height) - 0.5) * -9;
-
-        if(!frame){
-            frame = requestAnimationFrame(update3D);
-        }
-
-    });
-
-    function update3D(){
-
-        currentX +=
-            (targetX - currentX) * 0.18;
-
-        currentY +=
-            (targetY - currentY) * 0.18;
-
-        card.style.transform =
-            `perspective(900px)
-             rotateX(${currentX}deg)
-             rotateY(${currentY}deg)
-             translateY(-6px)`;
-
-        if(
-            Math.abs(targetX - currentX) > 0.05 ||
-            Math.abs(targetY - currentY) > 0.05
-        ){
-
-            frame =
-                requestAnimationFrame(update3D);
-
-        }else{
-
-            frame = null;
-        }
-    }
-
-    card.addEventListener("mouseleave", () => {
-
-        targetX = 0;
-        targetY = 0;
-
-        if(!frame){
-            frame =
-                requestAnimationFrame(update3D);
-        }
-
-    });
-
-});
-
-
-// ===============================
-// PREVENT BUTTON FROM OPENING CARD
-// ===============================
-
-document
-    .querySelectorAll(".game-more")
-    .forEach(button => {
-
-        button.addEventListener("click", e => {
-
-            e.stopPropagation();
-
-        });
-
-    });
-
-
-// ===============================
-// MOBILE PERFORMANCE
-// ===============================
-
-// روی موبایل 3D کارت‌ها همچنان فعال هستند.
-// اما حرکت آن‌ها فقط با لمس انجام نمی‌شود
-// تا هنگام اسکرول فشار اضافه ایجاد نشود.
-
-if(window.matchMedia("(max-width:800px)").matches){
-
-    cards.forEach(card => {
-
-        card.addEventListener("touchstart", () => {
-
-            card.style.transform =
-                "perspective(900px) rotateX(2deg) rotateY(-2deg) translateY(-4px)";
-
-        }, {passive:true});
-
-        card.addEventListener("touchend", () => {
-
-            setTimeout(() => {
-                card.style.transform = "";
-            }, 180);
-
-        }, {passive:true});
-
-    });
-
-            }
