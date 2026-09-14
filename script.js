@@ -1,151 +1,127 @@
 // ==========================================
-// GAME LAND
+// GAME LAND - OPTIMIZED 3D
 // ==========================================
 
+const light = document.querySelector(".cursor-light");
+
 
 // ===============================
-// CURSOR
+// CURSOR LIGHT
 // ===============================
 
-const light =
-document.querySelector(".cursor-light");
+let mouseX = 0;
+let mouseY = 0;
+let lightX = 0;
+let lightY = 0;
 
+document.addEventListener("mousemove", e => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+});
 
-document.addEventListener(
-    "mousemove",
-    function(e){
+function moveLight(){
 
-        light.style.left =
-        e.clientX + "px";
+    lightX += (mouseX - lightX) * 0.12;
+    lightY += (mouseY - lightY) * 0.12;
 
-        light.style.top =
-        e.clientY + "px";
-
+    if(light){
+        light.style.left = lightX + "px";
+        light.style.top = lightY + "px";
     }
-);
 
+    requestAnimationFrame(moveLight);
+}
+
+moveLight();
 
 
 // ===============================
 // PARTICLES
+// فقط 22 ذره برای عملکرد بهتر
 // ===============================
 
-const particleBox =
-document.querySelector("#particles");
+const particleBox = document.querySelector("#particles");
 
+for(let i = 0; i < 22; i++){
 
-for(let i=0;i<80;i++){
+    const p = document.createElement("span");
 
-    const p =
-    document.createElement("span");
+    p.className = "particle";
 
-    p.className =
-    "particle";
-
-    p.style.left =
-    Math.random()*100+"%";
+    p.style.left = Math.random() * 100 + "%";
 
     p.style.animationDuration =
-    (5+Math.random()*12)+"s";
+        (7 + Math.random() * 10) + "s";
 
     p.style.animationDelay =
-    Math.random()*10+"s";
+        Math.random() * 10 + "s";
 
     particleBox.appendChild(p);
-
 }
-
 
 
 // ===============================
 // TYPING
 // ===============================
 
-const typing =
-document.querySelector(".typing");
-
+const typing = document.querySelector(".typing");
 
 const words = [
-
     "WELCOME GAMER 🎮",
     "ENTER GAME LAND",
     "PLAY • WIN • REPEAT"
-
 ];
 
-
-let word=0;
-let letter=0;
-let deleting=false;
-
+let word = 0;
+let letter = 0;
+let deleting = false;
 
 function typingEffect(){
 
-    const current =
-    words[word];
-
+    const current = words[word];
 
     if(!deleting){
 
         typing.textContent =
-        current.substring(
-            0,
-            letter+1
-        );
+            current.substring(0, letter + 1);
 
         letter++;
 
+        if(letter === current.length){
 
-        if(letter===current.length){
+            deleting = true;
 
-            deleting=true;
-
-            setTimeout(
-                typingEffect,
-                1500
-            );
+            setTimeout(typingEffect, 1500);
 
             return;
-
         }
 
-    }
-
-    else{
+    }else{
 
         typing.textContent =
-        current.substring(
-            0,
-            letter-1
-        );
+            current.substring(0, letter - 1);
 
         letter--;
 
+        if(letter === 0){
 
-        if(letter===0){
-
-            deleting=false;
+            deleting = false;
 
             word++;
 
-            if(word>=words.length)
-                word=0;
-
+            if(word >= words.length){
+                word = 0;
+            }
         }
-
     }
-
 
     setTimeout(
         typingEffect,
-        deleting ? 50 : 100
+        deleting ? 55 : 100
     );
-
 }
 
-
 typingEffect();
-
 
 
 // ===============================
@@ -155,213 +131,124 @@ typingEffect();
 const games = {
 
     minecraft:{
-
         title:"Minecraft",
-
         icon:"⛏️",
-
         tag:"ADVENTURE",
-
         description:
         "در Minecraft می‌توانی دنیای خودت را بسازی، منابع جمع کنی و به ماجراجویی بروی.",
-
         genre:"Adventure",
-
         rating:"9.5/10",
-
         mode:"Solo / Multiplayer"
-
     },
-
 
     cod:{
-
         title:"Call of Duty",
-
         icon:"🔫",
-
         tag:"ACTION",
-
         description:
         "یک بازی اکشن و رقابتی با نبردهای سریع و حالت‌های مختلف بازی.",
-
         genre:"Action",
-
         rating:"9.1/10",
-
         mode:"Multiplayer"
-
     },
-
 
     gta:{
-
         title:"GTA V",
-
         icon:"🚘",
-
         tag:"OPEN WORLD",
-
         description:
         "یک دنیای آزاد بزرگ با شهر، مأموریت‌ها، وسایل نقلیه و فعالیت‌های مختلف.",
-
         genre:"Open World",
-
         rating:"9.3/10",
-
         mode:"Single / Online"
-
     },
 
-
     fortnite:{
-
         title:"Fortnite",
-
         icon:"🏆",
-
         tag:"BATTLE ROYALE",
-
         description:
         "یک بازی رقابتی آنلاین که بازیکنان برای رسیدن به پیروزی با یکدیگر رقابت می‌کنند.",
-
         genre:"Battle Royale",
-
         rating:"9.0/10",
-
         mode:"Online"
-
     }
-
 };
-
 
 
 // ===============================
 // MODAL
 // ===============================
 
-const modal =
-document.querySelector("#gameModal");
+const modal = document.querySelector("#gameModal");
 
+const cards = document.querySelectorAll(".game-card");
 
-document
-.querySelectorAll(".game-card")
-.forEach(card=>{
+cards.forEach(card => {
 
-    card.addEventListener(
-        "click",
-        function(){
+    card.addEventListener("click", () => {
 
-            const data =
-            games[
-                card.dataset.game
-            ];
+        const data = games[card.dataset.game];
 
+        if(!data) return;
 
-            document
-            .querySelector("#modalIcon")
-            .textContent =
+        document.querySelector("#modalIcon").textContent =
             data.icon;
 
-
-            document
-            .querySelector("#modalTitle")
-            .textContent =
+        document.querySelector("#modalTitle").textContent =
             data.title;
 
-
-            document
-            .querySelector("#modalTag")
-            .textContent =
+        document.querySelector("#modalTag").textContent =
             data.tag;
 
-
-            document
-            .querySelector("#modalDescription")
-            .textContent =
+        document.querySelector("#modalDescription").textContent =
             data.description;
 
-
-            document
-            .querySelector("#modalGenre")
-            .textContent =
+        document.querySelector("#modalGenre").textContent =
             data.genre;
 
-
-            document
-            .querySelector("#modalRating")
-            .textContent =
+        document.querySelector("#modalRating").textContent =
             data.rating;
 
-
-            document
-            .querySelector("#modalMode")
-            .textContent =
+        document.querySelector("#modalMode").textContent =
             data.mode;
 
+        modal.classList.add("active");
 
-            modal.classList.add(
-                "active"
-            );
-
-            document.body.style.overflow=
-            "hidden";
-
-        }
-    );
-
+        document.body.style.overflow = "hidden";
+    });
 });
-
 
 
 function closeModal(){
 
-    modal.classList.remove(
-        "active"
-    );
+    modal.classList.remove("active");
 
-    document.body.style.overflow=
-    "";
-
+    document.body.style.overflow = "";
 }
 
 
 document
-.querySelector(".close-modal")
-.addEventListener(
-    "click",
-    closeModal
-);
+    .querySelector(".close-modal")
+    .addEventListener("click", closeModal);
 
 
-modal.addEventListener(
-    "click",
-    function(e){
+modal.addEventListener("click", e => {
 
-        if(e.target===modal){
-
-            closeModal();
-
-        }
-
+    if(e.target === modal){
+        closeModal();
     }
-);
+
+});
 
 
-document.addEventListener(
-    "keydown",
-    function(e){
+document.addEventListener("keydown", e => {
 
-        if(e.key==="Escape"){
-
-            closeModal();
-
-        }
-
+    if(e.key === "Escape"){
+        closeModal();
     }
-);
 
+});
 
 
 // ===============================
@@ -405,303 +292,193 @@ const themes = {
         secondary:"#ff3d00",
         name:"ORANGE"
     }
-
 };
 
-
 const themeButtons =
-document.querySelectorAll(
-    ".theme-color"
-);
-
+    document.querySelectorAll(".theme-color");
 
 const themeName =
-document.querySelector(
-    "#themeName"
-);
+    document.querySelector("#themeName");
 
 
 function changeTheme(name){
 
-    const theme =
-    themes[name];
+    const theme = themes[name];
 
-    if(!theme)
-        return;
+    if(!theme) return;
 
+    document.documentElement.style
+        .setProperty("--primary", theme.primary);
 
-    document.documentElement
-    .style
-    .setProperty(
-        "--primary",
-        theme.primary
-    );
+    document.documentElement.style
+        .setProperty("--secondary", theme.secondary);
 
+    themeName.textContent = theme.name;
 
-    document.documentElement
-    .style
-    .setProperty(
-        "--secondary",
-        theme.secondary
-    );
-
-
-    themeName.textContent =
-    theme.name;
-
-
-    themeButtons
-    .forEach(btn=>{
-
-        btn.classList.remove(
-            "active"
-        );
-
+    themeButtons.forEach(btn => {
+        btn.classList.remove("active");
     });
 
-
     const selected =
-    document.querySelector(
-        `[data-theme="${name}"]`
-    );
-
-
-    if(selected){
-
-        selected.classList.add(
-            "active"
+        document.querySelector(
+            `[data-theme="${name}"]`
         );
 
+    if(selected){
+        selected.classList.add("active");
     }
-
 
     localStorage.setItem(
         "GAME_LAND_THEME",
         name
     );
-
 }
 
 
+themeButtons.forEach(button => {
 
-// ===============================
-// COLOR BUTTON CLICK
-// ===============================
+    button.addEventListener("click", () => {
 
-themeButtons
-.forEach(button=>{
+        changeTheme(
+            button.dataset.theme
+        );
 
-    button.addEventListener(
-        "click",
-        function(e){
-
-            changeTheme(
-                button.dataset.theme
-            );
-
-
-            ripple(
-                e.clientX,
-                e.clientY
-            );
-
-        }
-    );
+    });
 
 });
 
 
+const savedTheme =
+    localStorage.getItem("GAME_LAND_THEME");
 
-// ===============================
-// LOAD SAVED THEME
-// ===============================
-
-const saved =
-localStorage.getItem(
-    "GAME_LAND_THEME"
-);
-
-
-changeTheme(
-    saved || "cyan"
-);
-
-
-
-// ===============================
-// CLICK RIPPLE
-// ===============================
-
-function ripple(x,y){
-
-    const r =
-    document.createElement("span");
-
-
-    r.style.position=
-    "fixed";
-
-    r.style.left=
-    x+"px";
-
-    r.style.top=
-    y+"px";
-
-    r.style.width=
-    "20px";
-
-    r.style.height=
-    "20px";
-
-    r.style.border=
-    "2px solid var(--primary)";
-
-    r.style.borderRadius=
-    "50%";
-
-    r.style.pointerEvents=
-    "none";
-
-    r.style.zIndex=
-    "9999";
-
-    r.style.transform=
-    "translate(-50%,-50%)";
-
-    r.style.animation=
-    "ripple .7s ease-out";
-
-
-    document.body.appendChild(r);
-
-
-    setTimeout(
-        ()=>r.remove(),
-        700
-    );
-
-}
-
-
-
-// ===============================
-// ADD RIPPLE CSS
-// ===============================
-
-const style =
-document.createElement("style");
-
-
-style.textContent=`
-
-@keyframes ripple{
-
-    0%{
-
-        width:20px;
-        height:20px;
-
-        opacity:1;
-
-    }
-
-    100%{
-
-        width:130px;
-        height:130px;
-
-        opacity:0;
-
-    }
-
-}
-
-`;
-
-
-document.head.appendChild(style);
-
+changeTheme(savedTheme || "cyan");
 
 
 // ===============================
 // 3D GAME CARDS
+// بهینه‌شده با requestAnimationFrame
 // ===============================
 
-document
-.querySelectorAll(".game-card")
-.forEach(card=>{
+cards.forEach(card => {
 
-    card.addEventListener(
-        "mousemove",
-        function(e){
+    let frame = null;
 
-            const rect =
+    let targetX = 0;
+    let targetY = 0;
+
+    let currentX = 0;
+    let currentY = 0;
+
+    card.addEventListener("mousemove", e => {
+
+        const rect =
             card.getBoundingClientRect();
 
+        const x =
+            e.clientX - rect.left;
 
-            const x =
-            e.clientX -
-            rect.left;
+        const y =
+            e.clientY - rect.top;
 
+        targetY =
+            ((x / rect.width) - 0.5) * 9;
 
-            const y =
-            e.clientY -
-            rect.top;
+        targetX =
+            ((y / rect.height) - 0.5) * -9;
 
-
-            const rotateY =
-            ((x/rect.width)-.5)*10;
-
-
-            const rotateX =
-            ((y/rect.height)-.5)*-10;
-
-
-            card.style.transform=
-            `
-            perspective(900px)
-            rotateX(${rotateX}deg)
-            rotateY(${rotateY}deg)
-            translateY(-8px)
-            `;
-
+        if(!frame){
+            frame = requestAnimationFrame(update3D);
         }
-    );
 
+    });
 
-    card.addEventListener(
-        "mouseleave",
-        function(){
+    function update3D(){
 
-            card.style.transform="";
+        currentX +=
+            (targetX - currentX) * 0.18;
 
+        currentY +=
+            (targetY - currentY) * 0.18;
+
+        card.style.transform =
+            `perspective(900px)
+             rotateX(${currentX}deg)
+             rotateY(${currentY}deg)
+             translateY(-6px)`;
+
+        if(
+            Math.abs(targetX - currentX) > 0.05 ||
+            Math.abs(targetY - currentY) > 0.05
+        ){
+
+            frame =
+                requestAnimationFrame(update3D);
+
+        }else{
+
+            frame = null;
         }
-    );
+    }
+
+    card.addEventListener("mouseleave", () => {
+
+        targetX = 0;
+        targetY = 0;
+
+        if(!frame){
+            frame =
+                requestAnimationFrame(update3D);
+        }
+
+    });
 
 });
 
 
-
 // ===============================
-// BUTTON RIPPLE
+// PREVENT BUTTON FROM OPENING CARD
 // ===============================
 
 document
-.querySelectorAll(
-    ".main-btn,.second-btn,.game-more"
-)
-.forEach(button=>{
+    .querySelectorAll(".game-more")
+    .forEach(button => {
 
-    button.addEventListener(
-        "click",
-        function(e){
+        button.addEventListener("click", e => {
 
-            ripple(
-                e.clientX,
-                e.clientY
-            );
+            e.stopPropagation();
 
-        }
-    );
+        });
 
-});
+    });
+
+
+// ===============================
+// MOBILE PERFORMANCE
+// ===============================
+
+// روی موبایل 3D کارت‌ها همچنان فعال هستند.
+// اما حرکت آن‌ها فقط با لمس انجام نمی‌شود
+// تا هنگام اسکرول فشار اضافه ایجاد نشود.
+
+if(window.matchMedia("(max-width:800px)").matches){
+
+    cards.forEach(card => {
+
+        card.addEventListener("touchstart", () => {
+
+            card.style.transform =
+                "perspective(900px) rotateX(2deg) rotateY(-2deg) translateY(-4px)";
+
+        }, {passive:true});
+
+        card.addEventListener("touchend", () => {
+
+            setTimeout(() => {
+                card.style.transform = "";
+            }, 180);
+
+        }, {passive:true});
+
+    });
+
+            }
