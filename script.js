@@ -1,43 +1,422 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // دریافت تمام کارت‌های رنگی و عناصر تغییرکننده
-    const colorCards = document.querySelectorAll('.color-card');
-    const heroTitle = document.querySelector('.hero h1 span');
-    const logoSpan = document.querySelector('.logo span');
+// ================================
+// GAME LAND - PRO GAMING EFFECTS
+// ================================
 
-    // آرایه تعریف ترکیب رنگ‌ها (مطابق با کلاس‌های CSS)
-    const colorThemes = {
-        'color-1': { primary: '#00f2fe', secondary: '#4facfe' },
-        'color-2': { primary: '#ff0844', secondary: '#ffb199' },
-        'color-3': { primary: '#0ba360', secondary: '#3cba92' },
-        'color-4': { primary: '#654ea3', secondary: '#eaafc8' },
-        'color-5': { primary: '#f6d365', secondary: '#fda085' },
-        'color-6': { primary: '#b224ef', secondary: '#7579ff' },
-        'color-7': { primary: '#11998e', secondary: '#38ef7d' }
-    };
 
-    // افزودن رویداد کلیک برای هر کارت مستطیلی
-    colorCards.forEach(card => {
-        card.addEventListener('click', () => {
-            // شناسایی کلاس رنگی کلیک شده
-            const colorClass = Array.from(card.classList).find(c => c.startsWith('color-'));
+// نور دنبال کننده موس
 
-            if (colorClass && colorThemes[colorClass]) {
-                const selectedTheme = colorThemes[colorClass];
+const light = document.querySelector(".cursor-light");
 
-                // تغییر رنگ متون و بخش‌های شاخص سایت
-                if (heroTitle) {
-                    heroTitle.style.color = selectedTheme.primary;
-                    heroTitle.style.textShadow = `0 0 15px ${selectedTheme.primary}`;
-                }
+document.addEventListener("mousemove",(e)=>{
 
-                if (logoSpan) {
-                    logoSpan.style.color = selectedTheme.secondary;
-                }
+    light.style.left =
+    e.clientX - 125 + "px";
 
-                // افکت کادر نئونی روی مستطیل انتخاب‌شده
-                colorCards.forEach(c => c.style.border = '1px solid rgba(255, 255, 255, 0.1)');
-                card.style.border = `2px solid ${selectedTheme.primary}`;
-            }
-        });
-    });
+    light.style.top =
+    e.clientY - 125 + "px";
+
 });
+
+
+
+
+// ================================
+// ساخت ذرات متحرک
+// ================================
+
+for(let i=0;i<100;i++){
+
+    let particle =
+    document.createElement("div");
+
+    particle.className="particle";
+
+    particle.style.left =
+    Math.random()*100+"vw";
+
+    particle.style.top =
+    Math.random()*100+"vh";
+
+
+    particle.style.animationDuration =
+    (5+Math.random()*10)+"s";
+
+
+    particle.style.opacity =
+    Math.random();
+
+
+    document.body.appendChild(particle);
+
+}
+
+
+
+
+
+
+// ================================
+// تایپ حرفه‌ای عنوان
+// ================================
+
+
+const title =
+document.querySelector(".typing");
+
+
+const words=[
+
+"WELCOME GAMER 🎮",
+
+"ENTER THE DIGITAL WORLD",
+
+"GAME LAND"
+
+];
+
+
+let wordIndex=0;
+let charIndex=0;
+
+
+function type(){
+
+if(charIndex < words[wordIndex].length){
+
+title.innerHTML +=
+words[wordIndex][charIndex];
+
+charIndex++;
+
+setTimeout(type,100);
+
+}
+
+else{
+
+setTimeout(()=>{
+
+title.innerHTML="";
+
+charIndex=0;
+
+wordIndex++;
+
+if(wordIndex>=words.length)
+wordIndex=0;
+
+
+type();
+
+
+},1500);
+
+}
+
+}
+
+
+type();
+
+
+
+
+
+
+// ================================
+// حرکت سه بعدی کارت‌ها
+// ================================
+
+
+const cards =
+document.querySelectorAll(".card");
+
+
+cards.forEach(card=>{
+
+
+card.addEventListener("mousemove",(e)=>{
+
+
+let x =
+e.offsetX;
+
+
+let y =
+e.offsetY;
+
+
+let rotateY =
+(x-card.offsetWidth/2)/15;
+
+
+let rotateX =
+(y-card.offsetHeight/2)/-15;
+
+
+
+card.style.transform =
+`
+perspective(600px)
+rotateX(${rotateX}deg)
+rotateY(${rotateY}deg)
+scale(1.08)
+`;
+
+});
+
+
+
+card.addEventListener("mouseleave",()=>{
+
+
+card.style.transform =
+"";
+
+
+});
+
+
+});
+
+
+
+
+
+
+
+// ================================
+// انیمیشن اسکرول
+// ================================
+
+
+const hidden =
+document.querySelectorAll(".hidden");
+
+
+const observer =
+new IntersectionObserver((items)=>{
+
+
+items.forEach(item=>{
+
+
+if(item.isIntersecting){
+
+item.target.classList.add("show");
+
+}
+
+
+});
+
+
+});
+
+
+
+hidden.forEach(el=>{
+
+observer.observe(el);
+
+});
+
+
+
+
+
+
+
+// ================================
+// شمارنده حرفه‌ای
+// ================================
+
+
+const counters =
+document.querySelectorAll(".counter");
+
+
+counters.forEach(counter=>{
+
+
+let target =
+Math.floor(Math.random()*9000)+1000;
+
+
+let value=0;
+
+
+let speed =
+target/100;
+
+
+
+let timer =
+setInterval(()=>{
+
+
+value+=speed;
+
+
+counter.innerHTML =
+Math.floor(value)+"+";
+
+
+
+if(value>=target){
+
+counter.innerHTML =
+target+"+";
+
+
+clearInterval(timer);
+
+}
+
+
+
+},30);
+
+
+
+});
+
+
+
+
+
+
+
+// ================================
+// افکت کلیک گیمینگ
+// ================================
+
+
+document.addEventListener("click",(e)=>{
+
+
+let circle =
+document.createElement("span");
+
+
+circle.style.position="fixed";
+
+circle.style.left=e.clientX+"px";
+
+circle.style.top=e.clientY+"px";
+
+circle.style.width="20px";
+
+circle.style.height="20px";
+
+circle.style.borderRadius="50%";
+
+circle.style.border="2px solid cyan";
+
+circle.style.pointerEvents="none";
+
+circle.style.animation=
+"clickEffect .6s";
+
+
+document.body.appendChild(circle);
+
+
+
+setTimeout(()=>{
+
+circle.remove();
+
+},600);
+
+
+});
+
+
+
+
+
+
+
+
+// ================================
+// دکمه‌های نئونی
+// ================================
+
+
+document.querySelectorAll("button")
+.forEach(btn=>{
+
+
+btn.addEventListener("mouseenter",()=>{
+
+
+btn.style.boxShadow=
+"0 0 40px #ff00aa";
+
+
+});
+
+
+
+btn.addEventListener("mouseleave",()=>{
+
+
+btn.style.boxShadow="";
+
+
+});
+
+
+});
+
+
+
+
+
+
+
+// ================================
+// حرکت آرام پس زمینه
+// ================================
+
+
+let angle=0;
+
+
+function backgroundMove(){
+
+
+angle+=0.2;
+
+
+document.body.style.backgroundPosition =
+angle+"px "+angle+"px";
+
+
+
+requestAnimationFrame(backgroundMove);
+
+
+}
+
+
+backgroundMove();
+
+
+
+
+
+
+// ================================
+// افکت ورود سایت
+// ================================
+
+
+window.onload=()=>{
+
+
+document.body.style.opacity="1";
+
+
+};
