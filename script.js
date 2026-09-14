@@ -1,25 +1,28 @@
 // ==========================================
-// GAME LAND PRO SCRIPT
+// GAME LAND
 // ==========================================
 
 
 // ===============================
-// CURSOR LIGHT
+// CURSOR
 // ===============================
 
-const cursorLight =
+const light =
 document.querySelector(".cursor-light");
 
 
-document.addEventListener("mousemove",(e)=>{
+document.addEventListener(
+    "mousemove",
+    function(e){
 
-    cursorLight.style.left =
-    e.clientX + "px";
+        light.style.left =
+        e.clientX + "px";
 
-    cursorLight.style.top =
-    e.clientY + "px";
+        light.style.top =
+        e.clientY + "px";
 
-});
+    }
+);
 
 
 
@@ -27,42 +30,35 @@ document.addEventListener("mousemove",(e)=>{
 // PARTICLES
 // ===============================
 
-const particleContainer =
+const particleBox =
 document.querySelector("#particles");
 
 
-for(let i=0;i<90;i++){
+for(let i=0;i<80;i++){
 
-    const particle =
+    const p =
     document.createElement("span");
 
-    particle.className="particle";
+    p.className =
+    "particle";
 
-    particle.style.left =
+    p.style.left =
     Math.random()*100+"%";
 
-    particle.style.animationDuration =
+    p.style.animationDuration =
     (5+Math.random()*12)+"s";
 
-    particle.style.animationDelay =
+    p.style.animationDelay =
     Math.random()*10+"s";
 
-    particle.style.width =
-    (1+Math.random()*4)+"px";
-
-    particle.style.height =
-    particle.style.width;
-
-    particleContainer.appendChild(
-        particle
-    );
+    particleBox.appendChild(p);
 
 }
 
 
 
 // ===============================
-// TYPING EFFECT
+// TYPING
 // ===============================
 
 const typing =
@@ -72,44 +68,40 @@ document.querySelector(".typing");
 const words = [
 
     "WELCOME GAMER 🎮",
-
     "ENTER GAME LAND",
-
-    "LEVEL UP YOUR WORLD",
-
     "PLAY • WIN • REPEAT"
 
 ];
 
 
-let wordIndex=0;
-let charIndex=0;
+let word=0;
+let letter=0;
 let deleting=false;
 
 
-function typeEffect(){
+function typingEffect(){
 
-    const word =
-    words[wordIndex];
+    const current =
+    words[word];
 
 
     if(!deleting){
 
         typing.textContent =
-        word.substring(
+        current.substring(
             0,
-            charIndex+1
+            letter+1
         );
 
-        charIndex++;
+        letter++;
 
 
-        if(charIndex === word.length){
+        if(letter===current.length){
 
             deleting=true;
 
             setTimeout(
-                typeEffect,
+                typingEffect,
                 1500
             );
 
@@ -117,28 +109,27 @@ function typeEffect(){
 
         }
 
-    }else{
+    }
+
+    else{
 
         typing.textContent =
-        word.substring(
+        current.substring(
             0,
-            charIndex-1
+            letter-1
         );
 
-        charIndex--;
+        letter--;
 
 
-        if(charIndex===0){
+        if(letter===0){
 
             deleting=false;
 
-            wordIndex++;
+            word++;
 
-            if(wordIndex>=words.length){
-
-                wordIndex=0;
-
-            }
+            if(word>=words.length)
+                word=0;
 
         }
 
@@ -146,68 +137,14 @@ function typeEffect(){
 
 
     setTimeout(
-        typeEffect,
+        typingEffect,
         deleting ? 50 : 100
     );
 
 }
 
 
-typeEffect();
-
-
-
-// ===============================
-// 3D GAME CARDS
-// ===============================
-
-document
-.querySelectorAll(".game-card")
-.forEach(card=>{
-
-    card.addEventListener(
-        "mousemove",
-        (e)=>{
-
-            const rect =
-            card.getBoundingClientRect();
-
-            const x =
-            e.clientX - rect.left;
-
-            const y =
-            e.clientY - rect.top;
-
-            const rotateY =
-            ((x / rect.width)-.5)*12;
-
-            const rotateX =
-            ((y / rect.height)-.5)*-12;
-
-
-            card.style.transform =
-            `
-            perspective(900px)
-            rotateX(${rotateX}deg)
-            rotateY(${rotateY}deg)
-            translateY(-8px)
-            scale(1.02)
-            `;
-
-        }
-    );
-
-
-    card.addEventListener(
-        "mouseleave",
-        ()=>{
-
-            card.style.transform="";
-
-        }
-    );
-
-});
+typingEffect();
 
 
 
@@ -226,7 +163,7 @@ const games = {
         tag:"ADVENTURE",
 
         description:
-        "یک دنیای بزرگ و آزاد که در آن می‌توانی ساخت‌وساز کنی، منابع جمع کنی، به ماجراجویی بروی و دنیای خودت را بسازی.",
+        "در Minecraft می‌توانی دنیای خودت را بسازی، منابع جمع کنی و به ماجراجویی بروی.",
 
         genre:"Adventure",
 
@@ -246,7 +183,7 @@ const games = {
         tag:"ACTION",
 
         description:
-        "یک مجموعه اکشن و تیراندازی سریع با حالت‌های مختلف که روی رقابت، تاکتیک و مبارزه تمرکز دارد.",
+        "یک بازی اکشن و رقابتی با نبردهای سریع و حالت‌های مختلف بازی.",
 
         genre:"Action",
 
@@ -266,7 +203,7 @@ const games = {
         tag:"OPEN WORLD",
 
         description:
-        "یک دنیای آزاد بزرگ با شهر، مأموریت‌ها، وسایل نقلیه و فعالیت‌های مختلف که می‌توانی در آن به گشت‌وگذار بپردازی.",
+        "یک دنیای آزاد بزرگ با شهر، مأموریت‌ها، وسایل نقلیه و فعالیت‌های مختلف.",
 
         genre:"Open World",
 
@@ -286,7 +223,7 @@ const games = {
         tag:"BATTLE ROYALE",
 
         description:
-        "یک بازی رقابتی که در آن بازیکنان برای زنده ماندن و رسیدن به پیروزی با یکدیگر رقابت می‌کنند.",
+        "یک بازی رقابتی آنلاین که بازیکنان برای رسیدن به پیروزی با یکدیگر رقابت می‌کنند.",
 
         genre:"Battle Royale",
 
@@ -301,39 +238,11 @@ const games = {
 
 
 // ===============================
-// GAME MODAL
+// MODAL
 // ===============================
 
 const modal =
 document.querySelector("#gameModal");
-
-
-const modalTitle =
-document.querySelector("#modalTitle");
-
-
-const modalIcon =
-document.querySelector("#modalIcon");
-
-
-const modalTag =
-document.querySelector("#modalTag");
-
-
-const modalDescription =
-document.querySelector("#modalDescription");
-
-
-const modalGenre =
-document.querySelector("#modalGenre");
-
-
-const modalRating =
-document.querySelector("#modalRating");
-
-
-const modalMode =
-document.querySelector("#modalMode");
 
 
 document
@@ -342,43 +251,59 @@ document
 
     card.addEventListener(
         "click",
-        ()=>{
+        function(){
 
-            const id =
-            card.dataset.game;
-
-            const game =
-            games[id];
-
-            if(!game) return;
+            const data =
+            games[
+                card.dataset.game
+            ];
 
 
-            modalTitle.textContent =
-            game.title;
+            document
+            .querySelector("#modalIcon")
+            .textContent =
+            data.icon;
 
-            modalIcon.textContent =
-            game.icon;
 
-            modalTag.textContent =
-            game.tag;
+            document
+            .querySelector("#modalTitle")
+            .textContent =
+            data.title;
 
-            modalDescription.textContent =
-            game.description;
 
-            modalGenre.textContent =
-            game.genre;
+            document
+            .querySelector("#modalTag")
+            .textContent =
+            data.tag;
 
-            modalRating.textContent =
-            game.rating;
 
-            modalMode.textContent =
-            game.mode;
+            document
+            .querySelector("#modalDescription")
+            .textContent =
+            data.description;
+
+
+            document
+            .querySelector("#modalGenre")
+            .textContent =
+            data.genre;
+
+
+            document
+            .querySelector("#modalRating")
+            .textContent =
+            data.rating;
+
+
+            document
+            .querySelector("#modalMode")
+            .textContent =
+            data.mode;
 
 
             modal.classList.add(
                 "active"
             );
-
 
             document.body.style.overflow=
             "hidden";
@@ -390,9 +315,17 @@ document
 
 
 
-// ===============================
-// CLOSE MODAL
-// ===============================
+function closeModal(){
+
+    modal.classList.remove(
+        "active"
+    );
+
+    document.body.style.overflow=
+    "";
+
+}
+
 
 document
 .querySelector(".close-modal")
@@ -404,7 +337,7 @@ document
 
 modal.addEventListener(
     "click",
-    (e)=>{
+    function(e){
 
         if(e.target===modal){
 
@@ -418,7 +351,7 @@ modal.addEventListener(
 
 document.addEventListener(
     "keydown",
-    (e)=>{
+    function(e){
 
         if(e.key==="Escape"){
 
@@ -430,91 +363,47 @@ document.addEventListener(
 );
 
 
-function closeModal(){
-
-    modal.classList.remove(
-        "active"
-    );
-
-    document.body.style.overflow="";
-
-}
-
-
 
 // ===============================
-// THEME SYSTEM
+// THEMES
 // ===============================
 
 const themes = {
 
     cyan:{
-
         primary:"#00f7ff",
         secondary:"#7c00ff",
-        accent:"#ff00aa",
-        name:"Cyan"
-
+        name:"CYAN"
     },
-
 
     purple:{
-
-        primary:"#a855f7",
-        secondary:"#5b21b6",
-        accent:"#ec4899",
-        name:"Purple"
-
+        primary:"#a100ff",
+        secondary:"#5200ff",
+        name:"PURPLE"
     },
-
 
     pink:{
-
-        primary:"#ff00aa",
-        secondary:"#ff006e",
-        accent:"#8b00ff",
-        name:"Pink"
-
+        primary:"#ff008c",
+        secondary:"#ff00d4",
+        name:"PINK"
     },
-
-
-    red:{
-
-        primary:"#ff1744",
-        secondary:"#b00020",
-        accent:"#ff6d00",
-        name:"Red"
-
-    },
-
 
     green:{
-
         primary:"#00ff73",
-        secondary:"#00a854",
-        accent:"#b6ff00",
-        name:"Green"
-
+        secondary:"#00c853",
+        name:"GREEN"
     },
 
-
-    blue:{
-
-        primary:"#2878ff",
-        secondary:"#0047ab",
-        accent:"#00d9ff",
-        name:"Blue"
-
+    red:{
+        primary:"#ff1744",
+        secondary:"#b00020",
+        name:"RED"
     },
-
 
     orange:{
-
         primary:"#ff7a00",
         secondary:"#ff3d00",
-        accent:"#ffd000",
-        name:"Orange"
-
+        name:"ORANGE"
     }
 
 };
@@ -532,20 +421,20 @@ document.querySelector(
 );
 
 
+function changeTheme(name){
 
-function setTheme(theme){
+    const theme =
+    themes[name];
 
-    const selected =
-    themes[theme];
-
-    if(!selected) return;
+    if(!theme)
+        return;
 
 
     document.documentElement
     .style
     .setProperty(
         "--primary",
-        selected.primary
+        theme.primary
     );
 
 
@@ -553,41 +442,33 @@ function setTheme(theme){
     .style
     .setProperty(
         "--secondary",
-        selected.secondary
-    );
-
-
-    document.documentElement
-    .style
-    .setProperty(
-        "--accent",
-        selected.accent
+        theme.secondary
     );
 
 
     themeName.textContent =
-    selected.name;
+    theme.name;
 
 
     themeButtons
-    .forEach(button=>{
+    .forEach(btn=>{
 
-        button.classList.remove(
+        btn.classList.remove(
             "active"
         );
 
     });
 
 
-    const active =
+    const selected =
     document.querySelector(
-        `[data-theme="${theme}"]`
+        `[data-theme="${name}"]`
     );
 
 
-    if(active){
+    if(selected){
 
-        active.classList.add(
+        selected.classList.add(
             "active"
         );
 
@@ -595,160 +476,54 @@ function setTheme(theme){
 
 
     localStorage.setItem(
-        "gameLandTheme",
-        theme
+        "GAME_LAND_THEME",
+        name
     );
 
 }
 
 
 
-// انتخاب رنگ
+// ===============================
+// COLOR BUTTON CLICK
+// ===============================
 
-themeButtons.forEach(
-    button=>{
+themeButtons
+.forEach(button=>{
 
-        button.addEventListener(
-            "click",
-            ()=>{
+    button.addEventListener(
+        "click",
+        function(e){
 
-                setTheme(
-                    button.dataset.theme
-                );
-
-                clickEffect(
-                    event
-                );
-
-            }
-        );
-
-    }
-);
+            changeTheme(
+                button.dataset.theme
+            );
 
 
+            ripple(
+                e.clientX,
+                e.clientY
+            );
 
-// رنگ ذخیره‌شده
+        }
+    );
 
-const savedTheme =
+});
+
+
+
+// ===============================
+// LOAD SAVED THEME
+// ===============================
+
+const saved =
 localStorage.getItem(
-    "gameLandTheme"
+    "GAME_LAND_THEME"
 );
 
 
-if(savedTheme){
-
-    setTheme(
-        savedTheme
-    );
-
-}else{
-
-    setTheme("cyan");
-
-}
-
-
-
-// ===============================
-// COUNTERS
-// ===============================
-
-const counters =
-document.querySelectorAll(
-    ".counter"
-);
-
-
-const counterObserver =
-new IntersectionObserver(
-    entries=>{
-
-        entries.forEach(entry=>{
-
-            if(
-                !entry.isIntersecting
-            ) return;
-
-
-            const counter =
-            entry.target;
-
-            const target =
-            Number(
-                counter.dataset.target
-            );
-
-
-            let current=0;
-
-            const duration=1600;
-
-            const start =
-            performance.now();
-
-
-            function update(time){
-
-                const progress =
-                Math.min(
-                    (time-start)/
-                    duration,
-                    1
-                );
-
-
-                const eased =
-                1-Math.pow(
-                    1-progress,
-                    3
-                );
-
-
-                current =
-                Math.floor(
-                    eased*target
-                );
-
-
-                counter.textContent =
-                current.toLocaleString(
-                    "en-US"
-                )+"+";
-
-
-                if(progress<1){
-
-                    requestAnimationFrame(
-                        update
-                    );
-
-                }
-
-            }
-
-
-            requestAnimationFrame(
-                update
-            );
-
-
-            counterObserver.unobserve(
-                counter
-            );
-
-        });
-
-    },
-    {
-        threshold:.5
-    }
-);
-
-
-counters.forEach(
-    counter=>
-    counterObserver.observe(counter)
+changeTheme(
+    saved || "cyan"
 );
 
 
@@ -757,67 +532,51 @@ counters.forEach(
 // CLICK RIPPLE
 // ===============================
 
-document.addEventListener(
-    "click",
-    (e)=>{
+function ripple(x,y){
 
-        clickEffect(e);
-
-    }
-);
+    const r =
+    document.createElement("span");
 
 
-function clickEffect(e){
-
-    const ripple =
-    document.createElement(
-        "span"
-    );
-
-
-    ripple.style.position=
+    r.style.position=
     "fixed";
 
-    ripple.style.left=
-    e.clientX+"px";
+    r.style.left=
+    x+"px";
 
-    ripple.style.top=
-    e.clientY+"px";
+    r.style.top=
+    y+"px";
 
-    ripple.style.width=
+    r.style.width=
     "20px";
 
-    ripple.style.height=
+    r.style.height=
     "20px";
 
-    ripple.style.border=
+    r.style.border=
     "2px solid var(--primary)";
 
-    ripple.style.borderRadius=
+    r.style.borderRadius=
     "50%";
 
-    ripple.style.pointerEvents=
+    r.style.pointerEvents=
     "none";
 
-    ripple.style.zIndex=
+    r.style.zIndex=
     "9999";
 
-    ripple.style.transform=
+    r.style.transform=
     "translate(-50%,-50%)";
 
-    ripple.style.animation=
+    r.style.animation=
     "ripple .7s ease-out";
 
 
-    document.body.appendChild(
-        ripple
-    );
+    document.body.appendChild(r);
 
 
     setTimeout(
-        ()=>{
-            ripple.remove();
-        },
+        ()=>r.remove(),
         700
     );
 
@@ -826,7 +585,7 @@ function clickEffect(e){
 
 
 // ===============================
-// RIPPLE CSS
+// ADD RIPPLE CSS
 // ===============================
 
 const style =
@@ -848,8 +607,8 @@ style.textContent=`
 
     100%{
 
-        width:120px;
-        height:120px;
+        width:130px;
+        height:130px;
 
         opacity:0;
 
@@ -860,107 +619,12 @@ style.textContent=`
 `;
 
 
-document.head.appendChild(
-    style
-);
+document.head.appendChild(style);
 
 
 
 // ===============================
-// REVEAL ON SCROLL
-// ===============================
-
-const revealElements =
-document.querySelectorAll(
-    ".game-card, .feature, .stat-card, .news-card"
-);
-
-
-const revealObserver =
-new IntersectionObserver(
-    entries=>{
-
-        entries.forEach(
-            entry=>{
-
-                if(
-                    entry.isIntersecting
-                ){
-
-                    entry.target.style.opacity=
-                    "1";
-
-                    entry.target.style.transform=
-                    "translateY(0)";
-
-                }
-
-            }
-        );
-
-    },
-    {
-        threshold:.12
-    }
-);
-
-
-revealElements.forEach(
-    element=>{
-
-        element.style.opacity="0";
-
-        element.style.transform=
-        "translateY(35px)";
-
-        element.style.transition=
-        "opacity .7s ease, transform .7s ease";
-
-        revealObserver.observe(
-            element
-        );
-
-    }
-);
-
-
-
-// ===============================
-// BUTTON GLOW
-// ===============================
-
-document
-.querySelectorAll(
-    ".main-btn, .second-btn, .game-more"
-)
-.forEach(button=>{
-
-    button.addEventListener(
-        "mouseenter",
-        ()=>{
-
-            button.style.boxShadow=
-            "0 0 30px var(--primary)";
-
-        }
-    );
-
-
-    button.addEventListener(
-        "mouseleave",
-        ()=>{
-
-            button.style.boxShadow="";
-
-        }
-    );
-
-});
-
-
-
-// ===============================
-// MOBILE TOUCH EFFECT
+// 3D GAME CARDS
 // ===============================
 
 document
@@ -968,19 +632,46 @@ document
 .forEach(card=>{
 
     card.addEventListener(
-        "touchstart",
-        ()=>{
+        "mousemove",
+        function(e){
+
+            const rect =
+            card.getBoundingClientRect();
+
+
+            const x =
+            e.clientX -
+            rect.left;
+
+
+            const y =
+            e.clientY -
+            rect.top;
+
+
+            const rotateY =
+            ((x/rect.width)-.5)*10;
+
+
+            const rotateX =
+            ((y/rect.height)-.5)*-10;
+
 
             card.style.transform=
-            "scale(.97)";
+            `
+            perspective(900px)
+            rotateX(${rotateX}deg)
+            rotateY(${rotateY}deg)
+            translateY(-8px)
+            `;
 
         }
     );
 
 
     card.addEventListener(
-        "touchend",
-        ()=>{
+        "mouseleave",
+        function(){
 
             card.style.transform="";
 
@@ -992,15 +683,25 @@ document
 
 
 // ===============================
-// CONSOLE
+// BUTTON RIPPLE
 // ===============================
 
-console.log(
-    "%c🎮 GAME LAND",
-    "color:#00f7ff;font-size:30px;font-weight:bold"
-);
+document
+.querySelectorAll(
+    ".main-btn,.second-btn,.game-more"
+)
+.forEach(button=>{
 
-console.log(
-    "%cGaming system loaded!",
-    "color:#ff00aa;font-size:16px"
-);
+    button.addEventListener(
+        "click",
+        function(e){
+
+            ripple(
+                e.clientX,
+                e.clientY
+            );
+
+        }
+    );
+
+});
