@@ -1,242 +1,401 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>GAME LAND</title>
+    <title>GAME LAND | Gaming Zone</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="cursor-light"></div>
-<div id="particles"></div>
+    <!-- ================= HEADER ================= -->
 
-<nav class="navbar">
-    <div class="logo">🎮 GAME LAND</div>
+    <header class="header">
 
-    <div class="menu">
-        <a href="#home">خانه</a>
-        <a href="#games">بازی‌ها</a>
-        <a href="#themes">رنگ سایت</a>
-        <a href="#news">اخبار</a>
-    </div>
-</nav>
+        <a href="#home" class="logo">
+            <span class="logo-icon">🎮</span>
+            <span>GAME <b>LAND</b></span>
+        </a>
 
-<section class="hero" id="home">
+        <nav class="nav">
+            <a href="#home">خانه</a>
+            <a href="#games">بازی‌ها</a>
+            <a href="#themes">تم‌ها</a>
+            <a href="#news">اخبار</a>
+        </nav>
 
-    <div class="hero-content">
+    </header>
 
-        <div class="small-title">⚡ THE ULTIMATE GAMING ZONE</div>
 
-        <h1 class="typing"></h1>
+    <!-- ================= HERO ================= -->
+
+    <main>
+
+        <section class="hero" id="home">
+
+            <div class="hero-content">
+
+                <div class="hero-label">
+                    ⚡ ULTIMATE GAMING ZONE
+                </div>
+
+                <h1>
+                    <span>WELCOME</span>
+                    <strong>GAMER</strong>
+                </h1>
+
+                <p>
+                    به GAME LAND خوش آمدی؛
+                    جایی برای بازی، هیجان و دنیای گیم.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="#games" class="btn primary">
+                        🎮 بازی‌ها
+                    </a>
+
+                    <a href="#themes" class="btn secondary">
+                        🎨 تغییر تم
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- سبک و سه‌بعدی -->
+
+            <div class="hero-3d">
+
+                <div class="orbit orbit-one"></div>
+                <div class="orbit orbit-two"></div>
+
+                <div class="game-cube">
+                    <div class="cube-face front">🎮</div>
+                    <div class="cube-face back">⚡</div>
+                    <div class="cube-face right">🔥</div>
+                    <div class="cube-face left">👾</div>
+                    <div class="cube-face top">★</div>
+                    <div class="cube-face bottom">🎯</div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= GAMES ================= -->
+
+        <section class="section games-section" id="games">
+
+            <div class="section-heading">
+
+                <span>GAME CENTER</span>
+
+                <h2>
+                    🔥 بازی‌های محبوب
+                </h2>
+
+                <p>
+                    روی کارت بازی بزن تا اطلاعات آن را ببینی.
+                </p>
+
+            </div>
+
+
+            <div class="games-grid">
+
+                <article class="game-card" data-game="minecraft">
+
+                    <div class="game-image minecraft">
+                        ⛏️
+                    </div>
+
+                    <div class="game-content">
+
+                        <span class="tag">ADVENTURE</span>
+
+                        <h3>Minecraft</h3>
+
+                        <p>
+                            ساخت، بقا و ماجراجویی
+                        </p>
+
+                        <button class="more">
+                            اطلاعات بازی ←
+                        </button>
+
+                    </div>
+
+                </article>
+
+
+                <article class="game-card" data-game="cod">
+
+                    <div class="game-image cod">
+                        🔫
+                    </div>
+
+                    <div class="game-content">
+
+                        <span class="tag">ACTION</span>
+
+                        <h3>Call of Duty</h3>
+
+                        <p>
+                            نبرد سریع و رقابتی
+                        </p>
+
+                        <button class="more">
+                            اطلاعات بازی ←
+                        </button>
+
+                    </div>
+
+                </article>
+
+
+                <article class="game-card" data-game="gta">
+
+                    <div class="game-image gta">
+                        🚘
+                    </div>
+
+                    <div class="game-content">
+
+                        <span class="tag">OPEN WORLD</span>
+
+                        <h3>GTA V</h3>
+
+                        <p>
+                            شهر بزرگ و دنیای آزاد
+                        </p>
+
+                        <button class="more">
+                            اطلاعات بازی ←
+                        </button>
+
+                    </div>
+
+                </article>
+
+
+                <article class="game-card" data-game="fortnite">
+
+                    <div class="game-image fortnite">
+                        🏆
+                    </div>
+
+                    <div class="game-content">
+
+                        <span class="tag">BATTLE ROYALE</span>
+
+                        <h3>Fortnite</h3>
+
+                        <p>
+                            رقابت برای پیروزی
+                        </p>
+
+                        <button class="more">
+                            اطلاعات بازی ←
+                        </button>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= GAME MODAL ================= -->
+
+        <div class="modal" id="gameModal">
+
+            <div class="modal-box">
+
+                <button class="modal-close" id="closeModal">
+                    ×
+                </button>
+
+                <div class="modal-game-icon" id="modalIcon">
+                    🎮
+                </div>
+
+                <span class="tag" id="modalTag">
+                    GAME
+                </span>
+
+                <h2 id="modalTitle">
+                    Game
+                </h2>
+
+                <p id="modalDescription">
+                    توضیحات بازی
+                </p>
+
+                <div class="modal-stats">
+
+                    <div>
+                        <span>🎮</span>
+                        <small>ژانر</small>
+                        <b id="modalGenre">-</b>
+                    </div>
+
+                    <div>
+                        <span>⭐</span>
+                        <small>امتیاز</small>
+                        <b id="modalRating">-</b>
+                    </div>
+
+                    <div>
+                        <span>👥</span>
+                        <small>حالت</small>
+                        <b id="modalMode">-</b>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= THEMES ================= -->
+
+        <section class="section themes-section" id="themes">
+
+            <div class="section-heading">
+
+                <span>CUSTOMIZE</span>
+
+                <h2>
+                    🎨 تم سایت
+                </h2>
+
+                <p>
+                    رنگ مورد علاقه‌ات را انتخاب کن.
+                </p>
+
+            </div>
+
+
+            <div class="theme-panel">
+
+                <div class="theme-list">
+
+                    <button class="theme cyan active" data-theme="cyan">
+                        <i></i>
+                        <span>CYAN</span>
+                    </button>
+
+                    <button class="theme purple" data-theme="purple">
+                        <i></i>
+                        <span>PURPLE</span>
+                    </button>
+
+                    <button class="theme pink" data-theme="pink">
+                        <i></i>
+                        <span>PINK</span>
+                    </button>
+
+                    <button class="theme green" data-theme="green">
+                        <i></i>
+                        <span>GREEN</span>
+                    </button>
+
+                    <button class="theme red" data-theme="red">
+                        <i></i>
+                        <span>RED</span>
+                    </button>
+
+                    <button class="theme orange" data-theme="orange">
+                        <i></i>
+                        <span>ORANGE</span>
+                    </button>
+
+                </div>
+
+
+                <div class="selected-theme">
+                    <span>SELECTED THEME</span>
+                    <strong id="themeName">CYAN</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= NEWS ================= -->
+
+        <section class="section news-section" id="news">
+
+            <div class="section-heading">
+
+                <span>GAMING NEWS</span>
+
+                <h2>
+                    📰 آخرین اخبار
+                </h2>
+
+            </div>
+
+
+            <div class="news-card">
+
+                <div class="news-number">
+                    01
+                </div>
+
+                <div>
+                    <h3>
+                        به GAME LAND خوش آمدی! 🎮
+                    </h3>
+
+                    <p>
+                        اینجا دنیای مخصوص گیمرهاست.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="footer-logo">
+            🎮 GAME LAND
+        </div>
 
         <p>
-            به دنیای حرفه‌ای گیمرها خوش آمدی.
-            بازی، هیجان و تکنولوژی در یک مکان.
+            ساخته شده برای گیمرها ❤️
         </p>
 
-        <div class="hero-buttons">
-            <a href="#games" class="main-btn">🎮 مشاهده بازی‌ها</a>
-            <a href="#themes" class="second-btn">🎨 تغییر رنگ</a>
-        </div>
+        <div class="footer-line"></div>
 
-    </div>
+        <small>
+            © 2026 GAME LAND
+        </small>
 
-    <div class="hero-visual">
+    </footer>
 
-        <div class="glow-ring ring1"></div>
-        <div class="glow-ring ring2"></div>
 
-        <div class="gaming-cube">
-            🎮
-        </div>
-
-    </div>
-
-</section>
-
-<section class="games-section" id="games">
-
-    <div class="section-title">
-        <span>GAME CENTER</span>
-        <h2>🔥 بازی‌های محبوب</h2>
-        <p>روی هر بازی بزن تا اطلاعات آن را ببینی</p>
-    </div>
-
-    <div class="games-grid">
-
-        <article class="game-card" data-game="minecraft">
-            <div class="game-icon minecraft">⛏️</div>
-
-            <div class="game-info">
-                <span class="game-tag">ADVENTURE</span>
-                <h3>Minecraft</h3>
-                <p>ساخت، بقا و ماجراجویی</p>
-                <button class="game-more">مشاهده اطلاعات ←</button>
-            </div>
-        </article>
-
-        <article class="game-card" data-game="cod">
-            <div class="game-icon cod">🔫</div>
-
-            <div class="game-info">
-                <span class="game-tag">ACTION</span>
-                <h3>Call of Duty</h3>
-                <p>نبرد سریع و هیجان‌انگیز</p>
-                <button class="game-more">مشاهده اطلاعات ←</button>
-            </div>
-        </article>
-
-        <article class="game-card" data-game="gta">
-            <div class="game-icon gta">🚘</div>
-
-            <div class="game-info">
-                <span class="game-tag">OPEN WORLD</span>
-                <h3>GTA V</h3>
-                <p>شهر بزرگ و دنیای آزاد</p>
-                <button class="game-more">مشاهده اطلاعات ←</button>
-            </div>
-        </article>
-
-        <article class="game-card" data-game="fortnite">
-            <div class="game-icon fortnite">🏆</div>
-
-            <div class="game-info">
-                <span class="game-tag">BATTLE ROYALE</span>
-                <h3>Fortnite</h3>
-                <p>رقابت برای پیروزی</p>
-                <button class="game-more">مشاهده اطلاعات ←</button>
-            </div>
-        </article>
-
-    </div>
-</section>
-
-<div class="modal" id="gameModal">
-
-    <div class="modal-box">
-
-        <button class="close-modal">×</button>
-
-        <div class="modal-icon" id="modalIcon">🎮</div>
-
-        <span class="modal-tag" id="modalTag">GAME</span>
-
-        <h2 id="modalTitle">Game</h2>
-
-        <p id="modalDescription">توضیحات بازی</p>
-
-        <div class="modal-info">
-
-            <div>
-                <span>🎮</span>
-                <small>ژانر</small>
-                <strong id="modalGenre">-</strong>
-            </div>
-
-            <div>
-                <span>⭐</span>
-                <small>امتیاز</small>
-                <strong id="modalRating">-</strong>
-            </div>
-
-            <div>
-                <span>👥</span>
-                <small>حالت</small>
-                <strong id="modalMode">-</strong>
-            </div>
-
-        </div>
-
-    </div>
-</div>
-
-<section class="themes-section" id="themes">
-
-    <div class="section-title">
-        <span>CUSTOMIZE</span>
-        <h2>🎨 رنگ سایت</h2>
-        <p>تم مورد علاقه‌ات را انتخاب کن</p>
-    </div>
-
-    <div class="theme-box">
-
-        <div class="theme-grid">
-
-            <button class="theme-color cyan" data-theme="cyan">
-                <span>CYAN</span>
-            </button>
-
-            <button class="theme-color purple" data-theme="purple">
-                <span>PURPLE</span>
-            </button>
-
-            <button class="theme-color pink" data-theme="pink">
-                <span>PINK</span>
-            </button>
-
-            <button class="theme-color green" data-theme="green">
-                <span>GREEN</span>
-            </button>
-
-            <button class="theme-color red" data-theme="red">
-                <span>RED</span>
-            </button>
-
-            <button class="theme-color orange" data-theme="orange">
-                <span>ORANGE</span>
-            </button>
-
-        </div>
-
-        <div class="theme-selected">
-            <span>THEME</span>
-            <strong id="themeName">CYAN</strong>
-        </div>
-
-    </div>
-</section>
-
-<section class="news" id="news">
-
-    <div class="section-title">
-        <span>GAMING NEWS</span>
-        <h2>📰 آخرین اخبار</h2>
-    </div>
-
-    <div class="news-card">
-
-        <div class="news-number">01</div>
-
-        <div>
-            <h3>به GAME LAND خوش آمدی!</h3>
-            <p>اینجا دنیای مخصوص گیمرهاست.</p>
-        </div>
-
-    </div>
-
-</section>
-
-<footer>
-
-    <div class="footer-logo">🎮 GAME LAND</div>
-
-    <p>ساخته شده برای گیمرها ❤️</p>
-
-    <div class="footer-line"></div>
-
-    <small>© 2026 GAME LAND</small>
-
-</footer>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
-    </html>
+                                                    </html>
