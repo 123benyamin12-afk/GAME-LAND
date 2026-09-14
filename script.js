@@ -1,74 +1,168 @@
+/* =========================
+   THEME COLORS
+========================= */
+
 const root = document.documentElement;
 
-const colors = document.querySelectorAll(".color");
+const themes = document.querySelectorAll(".theme");
 
-colors.forEach(color => {
+const selectedColor =
+    document.getElementById("selectedColor");
 
-    color.addEventListener("click", () => {
 
-        const main = color.dataset.main;
-        const second = color.dataset.second;
+themes.forEach(theme => {
 
-        root.style.setProperty("--main", main);
-        root.style.setProperty("--second", second);
+    theme.addEventListener("click", () => {
 
-        colors.forEach(c => c.classList.remove("active"));
+        const main =
+            theme.getAttribute("data-main");
 
-        color.classList.add("active");
+        const second =
+            theme.getAttribute("data-second");
+
+        const name =
+            theme.getAttribute("data-name");
+
+
+        root.style.setProperty(
+            "--main",
+            main
+        );
+
+        root.style.setProperty(
+            "--second",
+            second
+        );
+
+
+        themes.forEach(item => {
+
+            item.classList.remove("active");
+
+        });
+
+
+        theme.classList.add("active");
+
+
+        selectedColor.textContent = name;
 
     });
 
 });
 
 
-/* رفتن به بازی‌ها */
 
-function goGames() {
-    document.getElementById("games").scrollIntoView({
+/* =========================
+   MOBILE MENU
+========================= */
+
+const menuButton =
+    document.getElementById("menuButton");
+
+const mobileMenu =
+    document.getElementById("mobileMenu");
+
+
+menuButton.addEventListener("click", () => {
+
+    mobileMenu.classList.toggle("open");
+
+});
+
+
+const menuLinks =
+    document.querySelectorAll(".mobile-menu a");
+
+
+menuLinks.forEach(link => {
+
+    link.addEventListener("click", () => {
+
+        mobileMenu.classList.remove("open");
+
+    });
+
+});
+
+
+
+/* =========================
+   START BUTTON
+========================= */
+
+function scrollToGames() {
+
+    const games =
+        document.getElementById("games");
+
+    games.scrollIntoView({
         behavior: "smooth"
     });
+
 }
 
 
-/* باز کردن اطلاعات بازی */
+
+/* =========================
+   GAME MODAL
+========================= */
+
+const modal =
+    document.getElementById("gameModal");
+
+const modalTitle =
+    document.getElementById("modalTitle");
+
+const modalText =
+    document.getElementById("modalText");
+
 
 function openGame(title, text) {
 
-    document.getElementById("modalTitle").textContent = title;
+    modalTitle.textContent = title;
 
-    document.getElementById("modalText").textContent = text;
+    modalText.textContent = text;
 
-    document.getElementById("modal").classList.add("show");
+    modal.classList.add("show");
+
+    document.body.style.overflow = "hidden";
 
 }
 
-
-/* بستن */
 
 function closeGame() {
 
-    document.getElementById("modal").classList.remove("show");
+    modal.classList.remove("show");
+
+    document.body.style.overflow = "";
 
 }
 
 
-/* بستن با کلیک بیرون */
 
-document.getElementById("modal").addEventListener("click", function(e) {
+/* کلیک بیرون پنجره */
 
-    if (e.target === this) {
+modal.addEventListener("click", (event) => {
+
+    if (event.target === modal) {
+
         closeGame();
+
     }
 
 });
 
 
-/* بستن با ESC */
 
-document.addEventListener("keydown", function(e) {
+/* دکمه ESC */
 
-    if (e.key === "Escape") {
+document.addEventListener("keydown", (event) => {
+
+    if (event.key === "Escape") {
+
         closeGame();
+
     }
 
 });
