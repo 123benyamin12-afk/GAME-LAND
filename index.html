@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1200, initial-scale=0.35, maximum-scale=2.0">
+    <title>GameLand - دنیای نئونی گیم</title>
+    <!-- فونت‌ها -->
+    <link href="https://cdn.jsdelivr.net/npm/vazirmatn@33.0.3/Vazirmatn-font-face.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <!-- آیکون‌ها -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-dark: #040d08;
+            --card-bg: rgba(10, 25, 18, 0.75);
+            --neon-green: #50fa7b;
+            --neon-green-glow: #69ff94;
+            --text-light: #ffffff;
+            --text-gray: #a0c0b0;
+            --font-title: 'Lalezar', cursive;
+            --font-btn: 'Lalezar', 'Orbitron', sans-serif;
+            --font-num: 'Orbitron', sans-serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Vazirmatn', sans-serif; }
+        
+        html, body {
+            min-width: 1200px;
+            width: 100%;
+        }
+
+        body { 
+            background: #040d08;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(80, 250, 123, 0.2) 0%, transparent 60%),
+                radial-gradient(circle at 10% 90%, rgba(80, 250, 123, 0.1) 0%, transparent 50%);
+            color: var(--text-light); 
+            display: flex; 
+            flex-direction: column; 
+            min-height: 100vh;
+        }
+
+        header { 
+            background: rgba(4, 15, 10, 0.95); 
+            backdrop-filter: blur(15px); 
+            position: sticky; 
+            top: 0; 
+            left: 0;
+            right: 0;
+            z-index: 1000; 
+            border-bottom: 2px solid rgba(80, 250, 123, 0.4); 
+            box-shadow: 0 0 25px rgba(80, 250, 123, 0.2);
+            padding: 15px 40px; 
+            width: 100%;
+        }
+
+        .nav-container { 
+            width: 100%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+        
+        .logo { 
+            font-family: var(--font-title); 
+            font-size: 2.8rem; 
+            color: #fff; 
+            text-shadow: 0 0 10px var(--neon-green), 0 0 25px var(--neon-green); 
+            letter-spacing: 2px;
+        }
+
+        .nav-links { 
+            display: flex; 
+            gap: 15px; 
+            list-style: none;
+        }
+        .nav-links a { 
+            color: var(--text-light); 
+            text-decoration: none; 
+            font-family: var(--font-btn);
+            font-size: 1.1rem; 
+            padding: 8px 22px; 
+            border-radius: 12px; 
+            cursor: pointer; 
+            transition: all 0.3s ease;
+            border: 1px solid rgba(80, 250, 123, 0.2);
+        }
+        .nav-links a:hover, .nav-links a.active { 
+            color: #040d08; 
+            background: var(--neon-green); 
+            border-color: var(--neon-green);
+            box-shadow: 0 0 20px var(--neon-green-glow);
+            font-weight: bold;
+        }
+
+        .hero { text-align: center; padding: 50px 20px 30px; width: 1200px; margin: 0 auto; }
+        .hero h1 { 
+            font-family: var(--font-title); 
+            font-size: 5rem; 
+            color: #fff;
+            text-shadow: 0 0 15px var(--neon-green), 0 0 30px var(--neon-green-glow);
+        }
+        .hero p { color: var(--text-gray); font-size: 1.3rem; margin-top: 10px; }
+
+        .genre-tags { display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 40px; }
+        .genre-tag { 
+            background: rgba(80, 250, 123, 0.1); 
+            border: 1px solid rgba(80, 250, 123, 0.3); 
+            padding: 10px 22px; 
+            border-radius: 30px; 
+            font-family: var(--font-title); 
+            font-size: 1.2rem; 
+            color: #fff; 
+            cursor: pointer; 
+            transition: 0.3s; 
+        }
+        .genre-tag:hover { background: var(--neon-green); color: #040d08; box-shadow: 0 0 20px var(--neon-green); }
+
+        .views-hero-card {
+            background: linear-gradient(135deg, rgba(10, 30, 20, 0.85) 0%, rgba(4, 15, 10, 0.95) 100%);
+            border: 2px solid rgba(80, 250, 123, 0.4);
+            border-radius: 24px;
+            padding: 35px 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.9), inset 0 0 20px rgba(80, 250, 123, 0.1);
+            margin-bottom: 50px;
+            backdrop-filter: blur(15px);
+        }
+
+        .views-hero-card::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, rgba(80, 250, 123, 0.15), transparent);
+            animation: scan 4s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { top: -100%; }
+            100% { top: 100%; }
+        }
+
+        .views-left {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            z-index: 2;
+        }
+
+        .views-icon-wrapper {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            background: rgba(80, 250, 123, 0.15);
+            border: 2px solid var(--neon-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--neon-green);
+            font-size: 2.5rem;
+            box-shadow: 0 0 30px rgba(80, 250, 123, 0.4);
+            animation: floatIcon 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes floatIcon {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-8px); box-shadow: 0 0 45px rgba(80, 250, 123, 0.7); }
+        }
+
+        .views-title-group h3 {
+            font-family: var(--font-title);
+            font-size: 2.2rem;
+            color: #fff;
+            text-shadow: 0 0 10px var(--neon-green);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .views-title-group p {
+            color: var(--text-gray);
+            font-size: 1.05rem;
+            margin-top: 4px;
+        }
+
+        .live-dot {
+            width: 12px;
+            height: 12px;
+            background: var(--neon-green);
+            border-radius: 50%;
+            box-shadow: 0 0 12px var(--neon-green);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.9); opacity: 0.8; }
+            50% { transform: scale(1.3); opacity: 1; box-shadow: 0 0 20px var(--neon-green); }
+            100% { transform: scale(0.9); opacity: 0.8; }
+        }
+
+        .views-right {
+            display: flex;
+            gap: 40px;
+            z-index: 2;
+        }
+
+        .view-box {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 15px 30px;
+            border-radius: 16px;
+            border: 1px solid rgba(80, 250, 123, 0.25);
+            min-width: 160px;
+        }
+
+        .view-box-label {
+            font-size: 0.95rem;
+            color: var(--text-gray);
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .view-box-val {
+            font-family: var(--font-num);
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--neon-green);
+            text-shadow: 0 0 15px rgba(80, 250, 123, 0.6);
+            direction: ltr;
+        }
+
+        .btn { 
+            padding: 12px 30px; 
+            border-radius: 12px; 
+            font-family: var(--font-btn); 
+            font-size: 1.2rem; 
+            cursor: pointer; 
+            border: none; 
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            display: inline-block;
+            text-align: center;
+        }
+        .btn-green { 
+            background: linear-gradient(45deg, #50fa7b, #20aa4d); 
+            color: #040d08; 
+            font-weight: bold;
+            box-shadow: 0 0 25px rgba(80, 250, 123, 0.5); 
+        }
+        .btn-green:hover { 
+            transform: translateY(-3px) scale(1.02); 
+            box-shadow: 0 0 40px rgba(80, 250, 123, 0.8); 
+        }
+
+        .section-title { 
+            font-family: var(--font-title); 
+            font-size: 2.4rem; 
+            margin-bottom: 25px; 
+            border-right: 6px solid var(--neon-green); 
+            padding-right: 15px; 
+            color: #fff;
+            text-shadow: 0 0 15px var(--neon-green);
+        }
+
+        .container { width: 1200px; margin: 0 auto 60px; padding: 0; }
+        
+        .grid-container { 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 25px; 
+        }
+        
+        .game-card { 
+            background: var(--card-bg); 
+            backdrop-filter: blur(10px);
+            border-radius: 20px; 
+            overflow: hidden; 
+            border: 1px solid rgba(80, 250, 123, 0.25); 
+            display: flex; 
+            flex-direction: column; 
+            position: relative; 
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+        .game-card:hover { 
+            transform: translateY(-8px); 
+            border-color: var(--neon-green); 
+            box-shadow: 0 0 30px rgba(80, 250, 123, 0.3); 
+        }
+        
+        .card-img-wrapper {
+            width: 100%;
+            height: 180px;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(80, 250, 123, 0.2);
+            background: #000;
+        }
+
+        .card-img-wrapper svg { 
+            width: 100%; 
+            height: 100%; 
+            display: block;
+        }
+
+        .card-content { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
+        .card-title { font-family: var(--font-title); font-size: 1.5rem; margin-bottom: 10px; color: #fff; text-shadow: 0 0 8px var(--neon-green); }
+        .card-text { color: var(--text-gray); font-size: 0.95rem; margin-bottom: 20px; flex-grow: 1; line-height: 1.6; }
+        
+        .card-footer { display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 15px; border-top: 1px solid rgba(80, 250, 123, 0.15); flex-wrap: wrap; gap: 10px; }
+        .news-date { font-size: 0.85rem; color: var(--neon-green); font-weight: bold; width: 100%; margin-bottom: 5px; }
+        
+        .card-actions { display: flex; gap: 8px; width: 100%; justify-content: flex-end; }
+
+        .btn-edit, .btn-delete {
+            padding: 6px 14px; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            font-family: var(--font-btn);
+            font-size: 0.85rem; 
+            transition: 0.3s; 
+        }
+        .btn-edit { background: rgba(80, 250, 123, 0.15); color: var(--neon-green); border: 1px solid var(--neon-green); }
+        .btn-edit:hover { background: var(--neon-green); color: #040d08; box-shadow: 0 0 15px var(--neon-green); font-weight: bold; }
+        .btn-delete { background: rgba(255, 60, 60, 0.15); color: #ff5555; border: 1px solid #ff5555; }
+        .btn-delete:hover { background: #ff5555; color: white; box-shadow: 0 0 15px #ff5555; }
+
+        .admin-panel { 
+            width: 800px; 
+            margin: 40px auto; 
+            background: rgba(8, 20, 14, 0.9); 
+            backdrop-filter: blur(20px);
+            border: 2px solid var(--neon-green); 
+            box-shadow: 0 0 40px rgba(80, 250, 123, 0.25);
+            border-radius: 24px; 
+            padding: 40px; 
+            display: none; 
+        }
+        .admin-panel.active { display: block; }
+        .form-group { margin-bottom: 22px; }
+        .form-group label { display: block; margin-bottom: 10px; font-weight: bold; color: var(--neon-green); }
+        .form-control { 
+            width: 100%; 
+            padding: 14px; 
+            border-radius: 12px; 
+            background: rgba(0, 0, 0, 0.8); 
+            border: 1px solid rgba(80, 250, 123, 0.3); 
+            color: #fff; 
+            font-size: 1rem; 
+            outline: none; 
+            transition: 0.3s;
+        }
+        .form-control:focus { border-color: var(--neon-green); box-shadow: 0 0 15px var(--neon-green); }
+
+        footer { 
+            margin-top: auto; 
+            background: #020805; 
+            padding: 25px 20px; 
+            text-align: center; 
+            border-top: 1px solid rgba(80, 250, 123, 0.3); 
+            color: var(--text-gray); 
+            font-family: var(--font-btn);
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">GameLand</div>
+            <ul class="nav-links">
+                <li><a onclick="showPage('home')" class="active" id="nav-home">خانه</a></li>
+                <li id="admin-nav-item" style="display: none;"><a onclick="showPage('admin')" id="nav-admin">ADMIN Panel</a></li>
+                <li><a onclick="loginAdmin()" id="nav-login">ورود مدیر</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div id="home-page">
+        <section class="hero">
+            <h1>GameLand</h1>
+            <p>مرجع اخبار، معرفی و تحلیل دنیای گیمینگ آنلاین</p>
+        </section>
+
+        <!-- ۱. سبک‌های محبوب -->
+        <div class="container">
+            <h2 class="section-title">سبک‌های محبوب</h2>
+            <div class="genre-tags">
+                <div class="genre-tag">🔥 اکشن و ماجراجویی</div>
+                <div class="genre-tag">⚔️ نقش‌آفرینی (RPG)</div>
+                <div class="genre-tag">🎯 شوتر اول شخص (FPS)</div>
+                <div class="genre-tag">🚗 جهان‌باز (Open World)</div>
+                <div class="genre-tag">👻 ترسناک و بقا</div>
+            </div>
+        </div>
+
+        <!-- ۲. آمار بازدید زنده -->
+        <div class="container">
+            <div class="views-hero-card">
+                <div class="views-left">
+                    <div class="views-icon-wrapper">
+                        <i class="fa-solid fa-eye"></i>
+                    </div>
+                    <div class="views-title-group">
+                        <h3>آمار بازدید زنده <span class="live-dot"></span></h3>
+                        <p>میزان استقبال گیمرها از وب‌سایت گیم‌لند</p>
+                    </div>
+                </div>
+
+                <div class="views-right">
+                    <div class="view-box">
+                        <span class="view-box-label">بازدید امروز</span>
+                        <div class="view-box-val" id="stat-today">--</div>
+                    </div>
+                    <div class="view-box">
+                        <span class="view-box-label">بازدید کل</span>
+                        <div class="view-box-val" id="stat-total">--</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ۳. کارت‌های بازی با تصویر یکدست GAME LAND -->
+        <div class="container">
+            <h2 class="section-title">برترین بازی‌های شاهکار</h2>
+            <div class="grid-container">
+                
+                <!-- کارت ۱: ماینکرافت -->
+                <div class="game-card">
+                    <div class="card-img-wrapper">
+                        <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#040d08"/>
+                                    <stop offset="100%" stop-color="#0a2818"/>
+                                </linearGradient>
+                            </defs>
+                            <rect width="400" height="200" fill="url(#g1)"/>
+                            <circle cx="200" cy="100" r="70" fill="none" stroke="#50fa7b" stroke-width="2" opacity="0.3"/>
+                            <text x="200" y="115" font-family="'Orbitron', sans-serif" font-weight="900" font-size="28" fill="#50fa7b" text-anchor="middle" letter-spacing="4" style="filter: drop-shadow(0px 0px 8px #50fa7b);">GAME LAND</text>
+                        </svg>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Minecraft</h3>
+                        <p class="card-text">پرفروش‌ترین بازی تاریخ. دنیایی بی‌انتها از ساخت‌وساز، بقا و خلاقیت نامحدود.</p>
+                    </div>
+                </div>
+
+                <!-- کارت ۲: گاد آو وار -->
+                <div class="game-card">
+                    <div class="card-img-wrapper">
+                        <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#040d08"/>
+                                    <stop offset="100%" stop-color="#0a2818"/>
+                                </linearGradient>
+                            </defs>
+                            <rect width="400" height="200" fill="url(#g2)"/>
+                            <circle cx="200" cy="100" r="70" fill="none" stroke="#50fa7b" stroke-width="2" opacity="0.3"/>
+                            <text x="200" y="115" font-family="'Orbitron', sans-serif" font-weight="900" font-size="28" fill="#50fa7b" text-anchor="middle" letter-spacing="4" style="filter: drop-shadow(0px 0px 8px #50fa7b);">GAME LAND</text>
+                        </svg>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">God of War Ragnarök</h3>
+                        <p class="card-text">ادامه‌ی ماجراجویی حماسی کراتوس و آترئوس در اساطیر اسکاندیناوی.</p>
+                    </div>
+                </div>
+
+                <!-- کارت ۳: الدن رینگ -->
+                <div class="game-card">
+                    <div class="card-img-wrapper">
+                        <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#040d08"/>
+                                    <stop offset="100%" stop-color="#0a2818"/>
+                                </linearGradient>
+                            </defs>
+                            <rect width="400" height="200" fill="url(#g3)"/>
+                            <circle cx="200" cy="100" r="70" fill="none" stroke="#50fa7b" stroke-width="2" opacity="0.3"/>
+                            <text x="200" y="115" font-family="'Orbitron', sans-serif" font-weight="900" font-size="28" fill="#50fa7b" text-anchor="middle" letter-spacing="4" style="filter: drop-shadow(0px 0px 8px #50fa7b);">GAME LAND</text>
+                        </svg>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Elden Ring</h3>
+                        <p class="card-text">برنده جایزه بهترین بازی سال. جهان‌باز عظیم با غول‌آخرهای چالش‌برانگیز.</p>
+                    </div>
+                </div>
+
+                <!-- کارت ۴: سایبرپانک -->
+                <div class="game-card">
+                    <div class="card-img-wrapper">
+                        <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="g4" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#040d08"/>
+                                    <stop offset="100%" stop-color="#0a2818"/>
+                                </linearGradient>
+                            </defs>
+                            <rect width="400" height="200" fill="url(#g4)"/>
+                            <circle cx="200" cy="100" r="70" fill="none" stroke="#50fa7b" stroke-width="2" opacity="0.3"/>
+                            <text x="200" y="115" font-family="'Orbitron', sans-serif" font-weight="900" font-size="28" fill="#50fa7b" text-anchor="middle" letter-spacing="4" style="filter: drop-shadow(0px 0px 8px #50fa7b);">GAME LAND</text>
+                        </svg>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Cyberpunk 2077</h3>
+                        <p class="card-text">سفر به شهر نایت‌سیتی با فضاسازی سایبرپونکی و گرافیک نئونی فوق‌العاده.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ۴. بخش اخبار دیتابیس Supabase -->
+        <div class="container">
+            <h2 class="section-title">آخرین اخبار و اطلاعیه‌ها</h2>
+            <div class="grid-container" id="news-container">
+                <p style="text-align: center; grid-column: 1/-1;">در حال بارگذاری اخبار از دیتابیس...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- پنل مدیریت -->
+    <div id="admin-page" class="admin-panel">
+        <h2 style="font-family: var(--font-title); color: var(--neon-green); font-size: 2.2rem; margin-bottom: 25px; text-shadow: 0 0 15px var(--neon-green);">ADMIN PANEL</h2>
+        <form id="news-form">
+            <div class="form-group">
+                <label>عنوان خبر</label>
+                <input type="text" id="news-title-input" class="form-control" placeholder="عنوان خبر را وارد کنید" required>
+            </div>
+            <div class="form-group">
+                <label>انتخاب عکس از گالری (اختیاری)</label>
+                <input type="file" id="news-file-input" class="form-control" accept="image/*">
+            </div>
+            <div class="form-group">
+                <label>یا لینک عکس مستقیم (اختیاری)</label>
+                <input type="url" id="news-image-input" class="form-control" placeholder="https://example.com/image.jpg">
+            </div>
+            <div class="form-group">
+                <label>متن خبر</label>
+                <textarea id="news-text-input" class="form-control" rows="5" placeholder="متن کامل خبر..." required></textarea>
+            </div>
+            <button type="submit" id="submit-btn" class="btn btn-green" style="width: 100%;">ثبت خبر در Supabase</button>
+        </form>
+    </div>
+
+    <footer>GameLand 2026 © - مرجع گیمینگ آنلاین</footer>
+
+    <!-- کتابخانه‌ها -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script>
+        const SUPABASE_URL = 'https://gzteopgdkywhqufnsqnz.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd6dGVvcGdka3l3aHF1Zm5zcW56Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk0MDcyNDMsImV4cCI6MjEwNDk4MzI0M30.1NmZgZVkpsh_PnvZIyR-Q9Rqnpvn4KyZwZd8GwPBFlE';
+
+        const ADMIN_PASSWORD = '12benyamin12';
+        let isAdminLoggedIn = false;
+
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        /* --- سیستم افزایش بازدید --- */
+        async function initAnalytics() {
+            const todayStr = new Date().toISOString().split('T')[0];
+
+            try {
+                await supabaseClient.rpc('increment_views', { current_day: todayStr });
+            } catch (err) {
+                console.error('خطا در ثبت بازدید:', err);
+            }
+
+            const { data: analytics, error } = await supabaseClient
+                .from('analytics')
+                .select('*')
+                .eq('id', 1)
+                .single();
+
+            if (!error && analytics) {
+                const displayTodayViews = (analytics.last_date === todayStr) ? analytics.today_views : 0;
+                document.getElementById('stat-total').innerText = Number(analytics.total_views).toLocaleString('en-US');
+                document.getElementById('stat-today').innerText = Number(displayTodayViews).toLocaleString('en-US');
+            }
+        }
+
+        function loginAdmin() {
+            if (isAdminLoggedIn) {
+                showPage('admin');
+                return;
+            }
+
+            const pass = prompt('لطفاً رمز عبور مدیر را وارد کنید:');
+            if (pass === ADMIN_PASSWORD) {
+                isAdminLoggedIn = true;
+                document.getElementById('admin-nav-item').style.display = 'block';
+                document.getElementById('nav-login').innerText = 'خروج مدیر';
+                document.getElementById('nav-login').onclick = logoutAdmin;
+                showPage('admin');
+            } else if (pass !== null) {
+                alert('رمز عبور اشتباه است!');
+            }
+        }
+
+        function logoutAdmin() {
+            isAdminLoggedIn = false;
+            document.getElementById('admin-nav-item').style.display = 'none';
+            document.getElementById('nav-login').innerText = 'ورود مدیر';
+            document.getElementById('nav-login').onclick = loginAdmin;
+            showPage('home');
+        }
+
+        function showPage(page) {
+            if (page === 'admin' && !isAdminLoggedIn) {
+                alert('دسترسی غیرمجاز!');
+                return;
+            }
+
+            document.getElementById('home-page').style.display = page === 'home' ? 'block' : 'none';
+            document.getElementById('admin-page').style.display = page === 'admin' ? 'block' : 'none';
+            
+            document.getElementById('nav-home').classList.toggle('active', page === 'home');
+            const navAdmin = document.getElementById('nav-admin');
+            if (navAdmin) navAdmin.classList.toggle('active', page === 'admin');
+        }
+
+        async function fetchNews() {
+            const container = document.getElementById('news-container');
+            
+            let { data: newsList, error } = await supabaseClient
+                .from('news')
+                .select('*')
+                .order('id', { ascending: false });
+
+            if (error) {
+                container.innerHTML = `<p style="color:red; text-align: center; grid-column: 1/-1;">خطا در دریافت اطلاعات: ${error.message}</p>`;
+                return;
+            }
+
+            container.innerHTML = '';
+            if (newsList && newsList.length > 0) {
+                newsList.forEach((news) => {
+                    const adminButtons = isAdminLoggedIn ? `
+                        <div class="card-actions">
+                            <button class="btn-edit" onclick="editNews(${news.id}, \`${news.title.replace(/`/g, "\\`")}\`, \`${news.text.replace(/`/g, "\\`")}\`)">ویرایش</button>
+                            <button class="btn-delete" onclick="deleteNews(${news.id})">حذف</button>
+                        </div>
+                    ` : '';
+
+                    const card = `
+                        <div class="game-card">
+                            <div class="card-img-wrapper">
+                                <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="400" height="200" fill="#040d08"/>
+                                    <text x="200" y="115" font-family="'Orbitron', sans-serif" font-weight="900" font-size="28" fill="#50fa7b" text-anchor="middle" letter-spacing="4" style="filter: drop-shadow(0px 0px 8px #50fa7b);">GAME LAND</text>
+                                </svg>
+                            </div>
+                            <div class="card-content">
+                                <h3 class="card-title">${news.title}</h3>
+                                <p class="card-text">${news.text}</p>
+                                <div class="card-footer">
+                                    <span class="news-date">تاریخ: ${news.date}</span>
+                                    ${adminButtons}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    container.innerHTML += card;
+                });
+            } else {
+                container.innerHTML = '<p style="text-align: center; grid-column: 1/-1;">هنوز هیچ خبری در دیتابیس ثبت نشده است.</p>';
+            }
+        }
+
+        async function editNews(id, oldTitle, oldText) {
+            if (!isAdminLoggedIn) return;
+
+            const newTitle = prompt('عنوان جدید خبر را وارد کنید:', oldTitle);
+            if (!newTitle || newTitle.trim() === '') return;
+
+            const newText = prompt('متن جدید خبر را وارد کنید:', oldText);
+            if (!newText || newText.trim() === '') return;
+
+            const { error } = await supabaseClient
+                .from('news')
+                .update({ title: newTitle.trim(), text: newText.trim() })
+                .eq('id', id);
+
+            if (error) alert('خطا در ویرایش خبر: ' + error.message);
+            else { fetchNews(); }
+        }
+
+        async function deleteNews(id) {
+            if (!isAdminLoggedIn) return;
+            if (!confirm('آیا از حذف این خبر اطمینان دارید؟')) return;
+
+            const { error } = await supabaseClient
+                .from('news')
+                .delete()
+                .eq('id', id);
+
+            if (error) alert('خطا در حذف خبر: ' + error.message);
+            else { fetchNews(); }
+        }
+
+        document.getElementById('news-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            if (!isAdminLoggedIn) return;
+
+            const submitBtn = document.getElementById('submit-btn');
+            submitBtn.innerText = 'در حال ثبت...';
+            submitBtn.disabled = true;
+
+            const title = document.getElementById('news-title-input').value;
+            const text = document.getElementById('news-text-input').value;
+            const today = new Date().toLocaleDateString('fa-IR');
+
+            const { error } = await supabaseClient
+                .from('news')
+                .insert([{ title, text, date: today }]);
+
+            submitBtn.innerText = 'ثبت خبر در Supabase';
+            submitBtn.disabled = false;
+
+            if (error) {
+                alert('خطا در ثبت: ' + error.message);
+            } else {
+                document.getElementById('news-form').reset();
+                fetchNews();
+                showPage('home');
+            }
+        });
+
+        initAnalytics();
+        fetchNews();
+    </script>
+</body>
+</html>
